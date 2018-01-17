@@ -11,7 +11,7 @@
 <div id="main-content" class="wiki-content group">
 
 
-*   [1. Introduction](#MIDRESTAPI-Introduction)
+*   [1. Introduction](#1-introduction)
     *   [1.1\. Terminology](#MIDRESTAPI-Terminology)
 *   [2\. General description](#MIDRESTAPI-Generaldescription)
     *   [2.1\. UUID encoding](#MIDRESTAPI-UUIDencoding)
