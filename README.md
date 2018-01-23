@@ -21,14 +21,14 @@
     *   [3.1\. Session management ](#31-session-management)
     *   [3.2\. HTTP status code usage](#32-http-status-code-usage)
 *   [4\. REST API main flows](#4-rest-api-main-flows)
-    *   [4.1\. Certificate initiation](#41-certificate-initiation)
+    *   [4.1\. Certificate request](#41-certificate-request)
         *   [4.1.1\. Preconditions ](#411-preconditions)
         *   [4.1.2\. Postconditions](#412-postconditions)
         *   [4.1.3\. Request parameters](#413-request-parameters)
         *   [4.1.4\. Example request](#414-example-request)
         *   [4.1.5\. Example response](#415-example-response)
         *   [4.1.6\. Error conditions](#416-error-conditions)
-    *   [4.2\. Certificate status](#42-certificate-status)
+    *   [4.2\. Certificate request status](#42-certificate-status)
         *   [4.2.1\. Preconditions](#421-preconditions)
         *   [4.2.2\. Postconditions](#422-postconditions)
         *   [4.2.3\. Response structure ](#423-response-structure)
@@ -167,7 +167,7 @@ _`}`_
 
 <span class="inline-comment-marker" data-ref="37ce9f19-f57b-4c9f-922a-36e89b61c972">BASE: mid-api</span>
 
-## <span class="numhead-number">4.1\.</span> Certificate initiation
+## <span class="numhead-number">4.1\.</span> Certificate request
 
 <div class="table-wrap">
 
@@ -445,7 +445,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.2\.</span> Certificate status
+## <span class="numhead-number">4.2\.</span> Certificate request status
 
 <div class="table-wrap">
 
