@@ -28,7 +28,7 @@
         *   [4.1.4\. Example request](#414-example-request)
         *   [4.1.5\. Example response](#415-example-response)
         *   [4.1.6\. Error conditions](#416-error-conditions)
-    *   [4.2\. Certificate request status](#42-certificate-status)
+    *   [4.2\. Certificate request status](#42-certificate-request-status)
         *   [4.2.1\. Preconditions](#421-preconditions)
         *   [4.2.2\. Postconditions](#422-postconditions)
         *   [4.2.3\. Response structure ](#423-response-structure)
