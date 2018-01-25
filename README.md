@@ -17,23 +17,25 @@
     *   [2.1\. UUID encoding](#21-uuid-encoding)
     *   [2.2\.  relyingPartyName handling](#22-relyingpartyname-handling)
     *   [2.3\. Hash algorithms](#23-hash-algorithms)
+     *  [2.4\. Verification code](#24-verification-code)
+         *   [2.4.1\. Verification code calculation algroithm](#241-verification-code-calculation-algroithm)
 *   [3\. REST API](#3-rest-api)
     *   [3.1\. Session management ](#31-session-management)
     *   [3.2\. HTTP status code usage](#32-http-status-code-usage)
 *   [4\. REST API main flows](#4-rest-api-main-flows)
-    *   [4.1\. Certificate initiation](#41-certificate-initiation)
+    *   [4.1\. Certificate request](#41-certificate-request)
         *   [4.1.1\. Preconditions ](#411-preconditions)
         *   [4.1.2\. Postconditions](#412-postconditions)
         *   [4.1.3\. Request parameters](#413-request-parameters)
         *   [4.1.4\. Example request](#414-example-request)
         *   [4.1.5\. Example response](#415-example-response)
         *   [4.1.6\. Error conditions](#416-error-conditions)
-    *   [4.2\. Certificate status](#42-certificate-status)
+    *   [4.2\. Certificate request status](#42-certificate-request-status)
         *   [4.2.1\. Preconditions](#421-preconditions)
         *   [4.2.2\. Postconditions](#422-postconditions)
         *   [4.2.3\. Response structure ](#423-response-structure)
         *   [4.2.4\. Error codes](#424-error-codes)
-    *   [4.3\. Signature session initiation](#43-signature-session-initiation)
+    *   [4.3\. Signature request](#43-signature-request)
         *   [4.3.1\. Preconditions](#431-preconditions)
         *   [4.3.2\. Postconditions](#432-postconditions)
         *   [4.3.3\. Request parameters](#433-request-parameters)
@@ -45,14 +47,14 @@
         *   [4.4.2\. Postconditions](#442-postconditions)
         *   [4.4.3\. Response structure ](#443-response-structure)
         *   [4.4.4\. Error codes](#444-error-codes)
-    *   [4.5\. Authentication session initiation](#45-authentication-session-initiation)
+    *   [4.5\. Authentication request](#45-authentication-request)
         *   [4.5.1\. Preconditions](#451-preconditions)
         *   [4.5.2\. Preconditions](#452-preconditions)
         *   [4.5.3\. Authentication request parameters](#453-authentication-request-parameters)
         *   [4.5.4\. Example request](#454-example-request)
         *   [4.5.5\. Example response](#455-example-response)
         *   [4.5.6\. Error codes](#456-error-codes)
-    *   [4.6\.  status](#46-status)
+    *   [4.6\.  Authentication status](#46-authentication-status)
         *   [4.6.1\. Preconditions](#461-preconditions)
         *   [4.6.2\. Postconditions](#462-postconditions)
         *   [4.6.3\. Response structure ](#463-response-structure)
@@ -86,6 +88,22 @@ relyingPartyName request field is case insensitive. The string is passed to end 
 ## <span class="numhead-number">2.3\.</span> Hash algorithms
 
 MID REST supports signature operations based on SHA-2 family of hash algorithms, namely SHA-256, SHA-384 and SHA-512\. Their corresponding identifiers in API are "SHA256", "SHA384" and "SHA512".
+
+## <span class="numhead-number">2.4\.</span> Verification code
+
+Verification code is a 4-digit number used in mobile authentication and mobile signing which is cryptographically linked with hash value to be signed. Verification code is displayed both in mobile phone and application in order to provide for authenticity of the signing request.
+
+During Mobile-ID authentication and signing this is required that e-service provider calculates verification code from the hash what will be signed and displays it to the user.
+
+### <span class="numhead-number">2.4.1\.</span> Verification code calculation algroithm
+
+6 bits  from the beginning of DTBS (hash senior bits) and 7 bits from the end of DTBS are taken.  The resulting 13 bits are transformed into decimal number and printed out. The Verification code is a decimal  4-digits number in range 0000-8192, always 4 digits are displayed (e.g. 0041).
+
+**Example:**
+* Hash value: 2f665f6a6999e0ef0752e00ec9f453adf59d8cb6
+* Binary representation of hash: **0010 11**11 0110 0110 1111 .... 1000 1100 1**011 0110**
+* Verification code – binary value:0010110110110
+* Verification code – decimal value (displayed for the user): 1462
 
 # <span class="numhead-number">3\.</span> REST API
 
@@ -167,7 +185,7 @@ _`}`_
 
 <span class="inline-comment-marker" data-ref="37ce9f19-f57b-4c9f-922a-36e89b61c972">BASE: mid-api</span>
 
-## <span class="numhead-number">4.1\.</span> Certificate initiation
+## <span class="numhead-number">4.1\.</span> Certificate request
 
 <div class="table-wrap">
 
@@ -200,6 +218,8 @@ _`}`_
 This method retrieves the signing certificate.
 
 This method is necessary for *AdES-styled digital signatures which require knowledge of the certificate before creating the signature.
+
+**NB!** This method will be updated during February 2018.  Please come back for updated version soon.
 
 ### <span class="numhead-number">4.1.1\.</span> Preconditions 
 
@@ -410,16 +430,6 @@ _`}`_
 
 <tr>
 
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd"><span class="inline-comment-marker" data-ref="d24f7c05-430a-4300-98d3-3eeb970eae06">IP-address in X-Forwarded-For header is incorrect</span></td>
-
-</tr>
-
-<tr>
-
 <td colspan="1" class="confluenceTd">401</td>
 
 <td colspan="1" class="confluenceTd">Failed to authorize user</td>
@@ -445,7 +455,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.2\.</span> Certificate status
+## <span class="numhead-number">4.2\.</span> Certificate request status
 
 <div class="table-wrap">
 
@@ -672,15 +682,6 @@ _`}`_
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">Happens when IP-address in X-Forwarded-For header is incorrect</td>
-
-</tr>
 
 <tr>
 
@@ -709,7 +710,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.3\.</span> Signature session initiation
+## <span class="numhead-number">4.3\.</span> Signature request
 
 <div class="table-wrap">
 
@@ -1004,15 +1005,6 @@ _`}`_
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">Happens when IP-address in X-Forwarded-For header is incorrect</td>
-
-</tr>
 
 <tr>
 
@@ -1324,19 +1316,6 @@ _`}`_
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">
-
-Happens when IP-address in X-Forwarded-For header is incorrect
-
-</td>
-
-</tr>
 
 <tr>
 
@@ -1365,7 +1344,7 @@ Happens when IP-address in X-Forwarded-For header is incorrect
 
 </div>
 
-## <span class="numhead-number">4.5\.</span> Authentication session initiation
+## <span class="numhead-number">4.5\.</span> Authentication request
 
 <div class="table-wrap">
 
@@ -1661,16 +1640,6 @@ _`}`_
 
 <td colspan="1" class="confluenceTd">400</td>
 
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">Happens when IP-address in X-Forwarded-For header is incorrect</td>
-
-</tr>
-
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
 <td colspan="1" class="confluenceTd">Required sessionId is missing :sessionID</td>
 
 <td colspan="1" class="confluenceTd">Happens when sessionID is missing.</td>
@@ -1713,7 +1682,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.6\.</span>  status
+## <span class="numhead-number">4.6\.</span> Authentication status
 
 <div class="table-wrap">
 
@@ -1979,15 +1948,6 @@ _`}`_
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">Happens when IP-address in X-Forwarded-For header is incorrect</td>
-
-</tr>
 
 <tr>
 
