@@ -17,6 +17,8 @@
     *   [2.1\. UUID encoding](#21-uuid-encoding)
     *   [2.2\.  relyingPartyName handling](#22-relyingpartyname-handling)
     *   [2.3\. Hash algorithms](#23-hash-algorithms)
+     *  [2.4\. Verification code](#24-verification-code)
+         *   [2.4.1\. Verification code calculation algroithm](#241-verification-code-calculation-algroithm)
 *   [3\. REST API](#3-rest-api)
     *   [3.1\. Session management ](#31-session-management)
     *   [3.2\. HTTP status code usage](#32-http-status-code-usage)
@@ -86,6 +88,22 @@ relyingPartyName request field is case insensitive. The string is passed to end 
 ## <span class="numhead-number">2.3\.</span> Hash algorithms
 
 MID REST supports signature operations based on SHA-2 family of hash algorithms, namely SHA-256, SHA-384 and SHA-512\. Their corresponding identifiers in API are "SHA256", "SHA384" and "SHA512".
+
+## <span class="numhead-number">2.4\.</span> Verification code
+
+Verification code is a 4-digit number used in mobile authentication and mobile signing which is cryptographically linked with hash value to be signed. Verification code is displayed both in mobile phone and computer application in order to provide for authenticity of the signing request.
+
+During Mobile-ID authentication and signing this is required that e-service provider calculates verification code from the hash what will be signed and displays it to the user.
+
+### <span class="numhead-number">2.4.1\.</span> Verification code calculation algroithm
+
+6 bits  from the beginning of DTBS (hash senior bits) and 7 bits from the end of DTBS are taken.  The resulting 13 bits are transformed into decimal number and printed out. The Verification code is a decimal  4-digits number in range 0000-8192, always 4 digits are displayed (e.g. 0041).
+
+**Example:**
+* Hash value: 2f665f6a6999e0ef0752e00ec9f453adf59d8cb6
+* Binary representation of hash: **0010 11**11 0110 0110 1111 .... 1000 1100 1**011 0110**
+* Verification code – binary value:0010110110110
+* Verification code – decimal value (displayed for the user): 1462
 
 # <span class="numhead-number">3\.</span> REST API
 
