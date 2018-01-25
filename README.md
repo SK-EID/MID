@@ -35,7 +35,7 @@
         *   [4.2.2\. Postconditions](#422-postconditions)
         *   [4.2.3\. Response structure ](#423-response-structure)
         *   [4.2.4\. Error codes](#424-error-codes)
-    *   [4.3\. Signature session initiation](#43-signature-session-initiation)
+    *   [4.3\. Signature request](#43-signature-request)
         *   [4.3.1\. Preconditions](#431-preconditions)
         *   [4.3.2\. Postconditions](#432-postconditions)
         *   [4.3.3\. Request parameters](#433-request-parameters)
@@ -47,14 +47,14 @@
         *   [4.4.2\. Postconditions](#442-postconditions)
         *   [4.4.3\. Response structure ](#443-response-structure)
         *   [4.4.4\. Error codes](#444-error-codes)
-    *   [4.5\. Authentication session initiation](#45-authentication-session-initiation)
+    *   [4.5\. Authentication request](#45-authentication-request)
         *   [4.5.1\. Preconditions](#451-preconditions)
         *   [4.5.2\. Preconditions](#452-preconditions)
         *   [4.5.3\. Authentication request parameters](#453-authentication-request-parameters)
         *   [4.5.4\. Example request](#454-example-request)
         *   [4.5.5\. Example response](#455-example-response)
         *   [4.5.6\. Error codes](#456-error-codes)
-    *   [4.6\.  status](#46-status)
+    *   [4.6\.  Authentication status](#46-authentication-status)
         *   [4.6.1\. Preconditions](#461-preconditions)
         *   [4.6.2\. Postconditions](#462-postconditions)
         *   [4.6.3\. Response structure ](#463-response-structure)
@@ -727,7 +727,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.3\.</span> Signature session initiation
+## <span class="numhead-number">4.3\.</span> Signature request
 
 <div class="table-wrap">
 
@@ -1383,7 +1383,7 @@ Happens when IP-address in X-Forwarded-For header is incorrect
 
 </div>
 
-## <span class="numhead-number">4.5\.</span> Authentication session initiation
+## <span class="numhead-number">4.5\.</span> Authentication request
 
 <div class="table-wrap">
 
@@ -1731,7 +1731,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.6\.</span>  status
+## <span class="numhead-number">4.6\.</span> Authentication status
 
 <div class="table-wrap">
 
