@@ -91,7 +91,7 @@ MID REST supports signature operations based on SHA-2 family of hash algorithms,
 
 ## <span class="numhead-number">2.4\.</span> Verification code
 
-Verification code is a 4-digit number used in mobile authentication and mobile signing which is cryptographically linked with hash value to be signed. Verification code is displayed both in mobile phone and computer application in order to provide for authenticity of the signing request.
+Verification code is a 4-digit number used in mobile authentication and mobile signing which is cryptographically linked with hash value to be signed. Verification code is displayed both in mobile phone and application in order to provide for authenticity of the signing request.
 
 During Mobile-ID authentication and signing this is required that e-service provider calculates verification code from the hash what will be signed and displays it to the user.
 
@@ -186,6 +186,8 @@ _`}`_
 <span class="inline-comment-marker" data-ref="37ce9f19-f57b-4c9f-922a-36e89b61c972">BASE: mid-api</span>
 
 ## <span class="numhead-number">4.1\.</span> Certificate request
+
+**NB!** This method will be updated during February 2018.  Please come back for updated version soon.
 
 <div class="table-wrap">
 
