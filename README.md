@@ -428,16 +428,6 @@ _`}`_
 
 <tr>
 
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd"><span class="inline-comment-marker" data-ref="d24f7c05-430a-4300-98d3-3eeb970eae06">IP-address in X-Forwarded-For header is incorrect</span></td>
-
-</tr>
-
-<tr>
-
 <td colspan="1" class="confluenceTd">401</td>
 
 <td colspan="1" class="confluenceTd">Failed to authorize user</td>
@@ -690,15 +680,6 @@ _`}`_
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">Happens when IP-address in X-Forwarded-For header is incorrect</td>
-
-</tr>
 
 <tr>
 
@@ -1022,15 +1003,6 @@ _`}`_
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">Happens when IP-address in X-Forwarded-For header is incorrect</td>
-
-</tr>
 
 <tr>
 
@@ -1342,19 +1314,6 @@ _`}`_
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">
-
-Happens when IP-address in X-Forwarded-For header is incorrect
-
-</td>
-
-</tr>
 
 <tr>
 
@@ -1679,16 +1638,6 @@ _`}`_
 
 <td colspan="1" class="confluenceTd">400</td>
 
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">Happens when IP-address in X-Forwarded-For header is incorrect</td>
-
-</tr>
-
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
 <td colspan="1" class="confluenceTd">Required sessionId is missing :sessionID</td>
 
 <td colspan="1" class="confluenceTd">Happens when sessionID is missing.</td>
@@ -1997,15 +1946,6 @@ _`}`_
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">400</td>
-
-<td colspan="1" class="confluenceTd">IP-address in request is invalid</td>
-
-<td colspan="1" class="confluenceTd">Happens when IP-address in X-Forwarded-For header is incorrect</td>
-
-</tr>
 
 <tr>
 
