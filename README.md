@@ -216,8 +216,6 @@ This method retrieves the signing certificate.
 
 This method is necessary for *AdES-styled digital signatures which require knowledge of the certificate before creating the signature.
 
-**NB!** This method will be updated during February 2018.  Please come back for updated version soon.
-
 ### <span class="numhead-number">4.1.1\.</span> Preconditions 
 
 *   User identified in the request (by relyingPartyName, relyingPartyUUID and IP-address)
