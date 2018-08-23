@@ -227,7 +227,7 @@ This method is necessary for *AdES-styled digital signatures which require knowl
 
 ### <span class="numhead-number">4.1.2\.</span> Postconditions
 
-*   New session has been created in the system and its ID returned in response. 
+*   Request result has been returned to user. 
 
 ### <span class="numhead-number">4.1.3\.</span> Request parameters
 
@@ -367,7 +367,8 @@ _`}`_
 <td class="confluenceTd">
 
 _`{`_  
-_`"sessionID": "de305d54-75b4-431b-adb2-eb6b9e546015"`_  
+_`"result": "OK",`_  
+_`"cert": "MIIHhjCCBW6gAwIBAgIQDNYLtVwrKURYStrYApYViTANBgkqhkiG9w0B..."`_  
 _`}`_
 
 </td>
@@ -380,7 +381,77 @@ _`}`_
 
 </div>
 
-### <span class="numhead-number">4.1.6\.</span> Error conditions
+### <span class="numhead-number">4.1.6\.</span> Response structure 
+
+<div class="table-wrap">
+
+<table class="confluenceTable"><colgroup><col> <col> <col> <col></colgroup> 
+
+<thead>
+
+<tr>
+
+<th class="confluenceTh">
+
+Parameter
+
+</th>
+
+<th class="confluenceTh">
+
+Type
+
+</th>
+
+<th class="confluenceTh">
+
+Mandatory
+
+</th>
+
+<th class="confluenceTh">
+
+Description
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td class="confluenceTd">result</td>
+
+<td class="confluenceTd">string</td>
+
+<td class="confluenceTd">+</td>
+
+<td class="confluenceTd">End result of the transaction.</td>
+
+</tr>
+
+<tr>
+
+<td colspan="1" class="confluenceTd">cert</td>
+
+<td colspan="1" class="confluenceTd">string</td>
+
+<td colspan="1" class="confluenceTd">for OK result</td>
+
+<td colspan="1" class="confluenceTd">Certificate value, DER + Base64 encoded.</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+### <span class="numhead-number">4.1.7\.</span> Error conditions
 
 <div class="table-wrap">
 
@@ -455,7 +526,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.2\.</span> Certificate request status
+### <span class="numhead-number">4.1.8\.</span> Possible result values
 
 <div class="table-wrap">
 
@@ -465,188 +536,7 @@ _`}`_
 
 <tr>
 
-<td class="confluenceTd">**Method**</td>
-
-<td class="confluenceTd">**URL**</td>
-
-</tr>
-
-<tr>
-
-<td colspan="1" class="confluenceTd"><span style="color: rgb(0,0,0);">GET</span></td>
-
-<td colspan="1" class="confluenceTd"><span class="nolink">BASE/certificate/session/:sessionId</span></td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-This method can be used to retrieve session result for certificate from MID.
-
-### <span class="numhead-number">4.2.1\.</span> Preconditions
-
-*   Session is present in the system and the request is either running or has been completed less than x minutes ago. 
-
-### <span class="numhead-number">4.2.2\.</span> Postconditions
-
-*   Request result has been returned to user. 
-
-### <span class="numhead-number">4.2.3\.</span> Response structure 
-
-<div class="table-wrap">
-
-<table class="confluenceTable"><colgroup><col> <col> <col> <col></colgroup> 
-
-<thead>
-
-<tr>
-
-<th class="confluenceTh">
-
-Parameter
-
-</th>
-
-<th class="confluenceTh">
-
-Type
-
-</th>
-
-<th class="confluenceTh">
-
-Mandatory
-
-</th>
-
-<th class="confluenceTh">
-
-Description
-
-</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-<tr>
-
-<td class="confluenceTd">state</td>
-
-<td class="confluenceTd">string</td>
-
-<td class="confluenceTd">+</td>
-
-<td class="confluenceTd">State of request. "RUNNING"/"COMPLETE".</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd">result</td>
-
-<td class="confluenceTd">string</td>
-
-<td class="confluenceTd">+</td>
-
-<td class="confluenceTd">End result of the transaction.</td>
-
-</tr>
-
-<tr>
-
-<td colspan="1" class="confluenceTd">cert</td>
-
-<td colspan="1" class="confluenceTd">string</td>
-
-<td colspan="1" class="confluenceTd">for OK result</td>
-
-<td colspan="1" class="confluenceTd">Certificate value, DER + Base64 encoded.</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-**successful response when still waiting for user's response**
-
-<div class="table-wrap">
-
-<table class="confluenceTable"><colgroup><col></colgroup> 
-
-<tbody>
-
-<tr>
-
-<td class="confluenceTd">
-
-_`{`_  
-_`"state"` `: ` `"RUNNING"` `,`_  
-_`"result"` `: {}`_  
-_`}`_
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-<span style="color: rgb(0,0,0);"> </span>  
-**successful response after completion**
-
-<div class="table-wrap">
-
-<table class="relative-table confluenceTable" style="width: 38.75%;"><colgroup><col style="width: 100.0%;"></colgroup> 
-
-<tbody>
-
-<tr>
-
-<td class="confluenceTd">
-
-_`{`_
-
-_``"state"` `: ` `"COMPLETE";``_  
-_`"result"` `: "OK"` `,`_  
-_`"cert"` `:` `"B+C9XVjIAZnCHH9vfBSv..."`_  
-_`}`_
-
-</td>
-
-</tr>
-
-</tbody>
-
-</table>
-
-</div>
-
-### <span class="numhead-number">4.2.4\.</span> Error codes
-
-<div class="table-wrap">
-
-<table class="confluenceTable"><colgroup><col> <col> <col></colgroup> 
-
-<tbody>
-
-<tr>
-
-<th class="confluenceTh">Error code</th>
-
-<th class="confluenceTh">Error message</th>
+<th class="confluenceTh">Response</th>
 
 <th class="confluenceTh">Reason</th>
 
@@ -654,61 +544,35 @@ _`}`_
 
 <tr>
 
-<td class="confluenceTd">500</td>
+<td class="confluenceTd">OK</td>
 
-<td class="confluenceTd">Error retrieving certificate response</td>
-
-<td class="confluenceTd">Happens when getting session status from cert-store fails. Cert-store throws internal server error</td>
+<td class="confluenceTd"><span>Active certificate was found</span></td>
 
 </tr>
 
 <tr>
 
-<td class="confluenceTd">404</td>
+<td class="confluenceTd">NOT_FOUND</td>
 
-<td class="confluenceTd">SessionId not found :sessionID</td>
-
-<td class="confluenceTd">SessionID in request is not found</td>
+<td class="confluenceTd"><span>No certificate for the user was found</span></td>
 
 </tr>
 
 <tr>
 
-<td colspan="1" class="confluenceTd">400</td>
+<td colspan="1" class="confluenceTd">NOT_ACTIVE</td>
 
-<td colspan="1" class="confluenceTd">Required sessionId is missing :sessionID</td>
-
-<td colspan="1" class="confluenceTd">Happens when sessionID is missing.</td>
+<td colspan="1" class="confluenceTd"><span>Certificate was found but is not active</span></td>
 
 </tr>
 
-
-<tr>
-
-<td colspan="1" class="confluenceTd">401</td>
-
-<td colspan="1" class="confluenceTd">Failed to authorize user</td>
-
-<td colspan="1" class="confluenceTd">User authorization by sessionID and IP-address fails</td>
-
-</tr>
-
-<tr>
-
-<td colspan="1" class="confluenceTd">405</td>
-
-<td colspan="1" class="confluenceTd">Method Not Allowed</td>
-
-<td colspan="1" class="confluenceTd">  
-</td>
-
-</tr>
 
 </tbody>
 
 </table>
 
 </div>
+
 
 ## <span class="numhead-number">4.3\.</span> Signature request
 
@@ -1093,7 +957,15 @@ _`}`_
 
 </div>
 
-This method can be used to retrieve session result for authentication from MID.
+<strong>Query parameter</strong> timeoutMs Request long poll timeout value in milliseconds. If not provided, a default is used. Server configuration may force this value into a certain range
+
+This method can be used to retrieve session result for signature from MID.
+
+This is a long poll method, meaning it might not return until a timeout expires. Caller can tune the request parameters inside the bounds set by service operator by using the <strong>timeoutMs</strong> query parameter.
+
+Example:
+
+BASE/signature/session/93de76af-68c1-4b55-91f7-3dad52b3115d?timeoutMs=10000
 
 ### <span class="numhead-number">4.4.1\.</span> Preconditions
 
@@ -1712,7 +1584,15 @@ _`}`_
 
 </div>
 
+<strong>Query parameter</strong> timeoutMs Request long poll timeout value in milliseconds. If not provided, a default is used. Server configuration may force this value into a certain range
+
 This method can be used to retrieve session result for authentication from MID.
+
+This is a long poll method, meaning it might not return until a timeout expires. Caller can tune the request parameters inside the bounds set by service operator by using the <strong>timeoutMs</strong> query parameter.
+
+Example:
+
+BASE/authentication/session/93de76af-68c1-4b55-91f7-3dad52b3115d?timeoutMs=10000
 
 ### <span class="numhead-number">4.6.1\.</span> Preconditions
 
