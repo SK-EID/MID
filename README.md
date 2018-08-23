@@ -29,36 +29,33 @@
         *   [4.1.3\. Request parameters](#413-request-parameters)
         *   [4.1.4\. Example request](#414-example-request)
         *   [4.1.5\. Example response](#415-example-response)
-        *   [4.1.6\. Error conditions](#416-error-conditions)
-    *   [4.2\. Certificate request status](#42-certificate-request-status)
+        *   [4.1.6\. Response structure](#416-response-structure)
+        *   [4.1.7\. Error conditions](#417-error-conditions)
+        *   [4.1.8\. Possible result values](#418-possible-result-values)
+    *   [4.2\. Signature request](#42-signature-request)
         *   [4.2.1\. Preconditions](#421-preconditions)
         *   [4.2.2\. Postconditions](#422-postconditions)
-        *   [4.2.3\. Response structure ](#423-response-structure)
-        *   [4.2.4\. Error codes](#424-error-codes)
-    *   [4.3\. Signature request](#43-signature-request)
+        *   [4.2.3\. Request parameters](#423-request-parameters)
+        *   [4.2.4\. Example request](#424-example-request)
+        *   [4.2.5\. Example response](#425-example-response)
+        *   [4.2.6\. Error codes](#426-error-codes)
+    *   [4.3\. Signature status](#43-signature-status)
         *   [4.3.1\. Preconditions](#431-preconditions)
         *   [4.3.2\. Postconditions](#432-postconditions)
-        *   [4.3.3\. Request parameters](#433-request-parameters)
-        *   [4.3.4\. Example request](#434-example-request)
-        *   [4.3.5\. Example response](#435-example-response)
-        *   [4.3.6\. Error codes](#436-error-codes)
-    *   [4.4\. Signature status](#44-signature-status)
+        *   [4.3.3\. Response structure ](#433-response-structure)
+        *   [4.3.4\. Error codes](#434-error-codes)
+    *   [4.4\. Authentication request](#44-authentication-request)
         *   [4.4.1\. Preconditions](#441-preconditions)
-        *   [4.4.2\. Postconditions](#442-postconditions)
-        *   [4.4.3\. Response structure ](#443-response-structure)
-        *   [4.4.4\. Error codes](#444-error-codes)
-    *   [4.5\. Authentication request](#45-authentication-request)
+        *   [4.4.2\. Preconditions](#442-preconditions)
+        *   [4.4.3\. Authentication request parameters](#443-authentication-request-parameters)
+        *   [4.4.4\. Example request](#444-example-request)
+        *   [4.4.5\. Example response](#445-example-response)
+        *   [4.4.6\. Error codes](#446-error-codes)
+    *   [4.5\.  Authentication status](#45-authentication-status)
         *   [4.5.1\. Preconditions](#451-preconditions)
-        *   [4.5.2\. Preconditions](#452-preconditions)
-        *   [4.5.3\. Authentication request parameters](#453-authentication-request-parameters)
-        *   [4.5.4\. Example request](#454-example-request)
-        *   [4.5.5\. Example response](#455-example-response)
-        *   [4.5.6\. Error codes](#456-error-codes)
-    *   [4.6\.  Authentication status](#46-authentication-status)
-        *   [4.6.1\. Preconditions](#461-preconditions)
-        *   [4.6.2\. Postconditions](#462-postconditions)
-        *   [4.6.3\. Response structure ](#463-response-structure)
-        *   [4.6.4\. Error codes](#464-error-codes)
+        *   [4.5.2\. Postconditions](#452-postconditions)
+        *   [4.5.3\. Response structure ](#453-response-structure)
+        *   [4.5.4\. Error codes](#454-error-codes)
 *   [5\. Session end result codes](#5-session-end-result-codes)
 
 <div>  
@@ -574,7 +571,7 @@ Description
 </div>
 
 
-## <span class="numhead-number">4.3\.</span> Signature request
+## <span class="numhead-number">4.2\.</span> Signature request
 
 <div class="table-wrap">
 
@@ -609,15 +606,15 @@ Description
 
 This method is the main entry point to signing logic.
 
-### <span class="numhead-number">4.3.1\.</span> Preconditions
+### <span class="numhead-number">4.2.1\.</span> Preconditions
 
 *   User identified in the request.
 
-### <span class="numhead-number">4.3.2\.</span> Postconditions
+### <span class="numhead-number">4.2.2\.</span> Postconditions
 
 *   a new session with ID is returned in response. 
 
-### <span class="numhead-number">4.3.3\.</span> <span class="inline-comment-marker" data-ref="54f344ad-e80a-41ba-98cb-8e8d899d26f0">Request parameters</span>
+### <span class="numhead-number">4.2.3\.</span> <span class="inline-comment-marker" data-ref="54f344ad-e80a-41ba-98cb-8e8d899d26f0">Request parameters</span>
 
 <div class="table-wrap">
 
@@ -759,7 +756,7 @@ Description
 
 </div>
 
-### <span class="numhead-number">4.3.4\.</span> Example request
+### <span class="numhead-number">4.2.4\.</span> Example request
 
 <div class="table-wrap">
 
@@ -794,7 +791,7 @@ _`}`_
 
 </div>
 
-### <span class="numhead-number">4.3.5\.</span> Example response
+### <span class="numhead-number">4.2.5\.</span> Example response
 
 <div class="table-wrap">
 
@@ -820,7 +817,7 @@ _`}`_
 
 </div>
 
-### <span class="numhead-number">4.3.6\.</span> Error codes
+### <span class="numhead-number">4.2.6\.</span> Error codes
 
 <div class="table-wrap">
 
@@ -927,7 +924,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.4\.</span> Signature status
+## <span class="numhead-number">4.3\.</span> Signature status
 
 <div class="table-wrap">
 
@@ -967,15 +964,15 @@ Example:
 
 BASE/signature/session/93de76af-68c1-4b55-91f7-3dad52b3115d?timeoutMs=10000
 
-### <span class="numhead-number">4.4.1\.</span> Preconditions
+### <span class="numhead-number">4.3.1\.</span> Preconditions
 
 *   Session is present in the system and the request is either running or has been completed less than x minutes ago. 
 
-### <span class="numhead-number">4.4.2\.</span> Postconditions
+### <span class="numhead-number">4.3.2\.</span> Postconditions
 
 *   Request result has been returned to user. 
 
-### <span class="numhead-number">4.4.3\.</span> Response structure 
+### <span class="numhead-number">4.3.3\.</span> Response structure 
 
 <div class="table-wrap">
 
@@ -1140,7 +1137,7 @@ _`}`_
 
 </div>
 
-### <span class="numhead-number">4.4.4\.</span> Error codes
+### <span class="numhead-number">4.3.4\.</span> Error codes
 
 <div class="table-wrap">
 
@@ -1216,7 +1213,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.5\.</span> Authentication request
+## <span class="numhead-number">4.4\.</span> Authentication request
 
 <div class="table-wrap">
 
@@ -1248,15 +1245,15 @@ _`}`_
 
 This method is the main entry point to authentication logic.
 
-### <span class="numhead-number">4.5.1\.</span> Preconditions
+### <span class="numhead-number">4.4.1\.</span> Preconditions
 
 *   User identified in the request. 
 
-### <span class="numhead-number">4.5.2\.</span> Preconditions
+### <span class="numhead-number">4.4.2\.</span> Preconditions
 
 *   New session has been created in the system and its ID returned in response. 
 
-### <span class="numhead-number">4.5.3\.</span> Authentication request parameters
+### <span class="numhead-number">4.4.3\.</span> Authentication request parameters
 
 <div class="table-wrap">
 
@@ -1398,7 +1395,7 @@ Description
 
 </div>
 
-### <span class="numhead-number">4.5.4\.</span> Example request
+### <span class="numhead-number">4.4.4\.</span> Example request
 
 <div class="table-wrap">
 
@@ -1433,7 +1430,7 @@ _`}`_
 
 </div>
 
-### <span class="numhead-number">4.5.5\.</span> Example response
+### <span class="numhead-number">4.4.5\.</span> Example response
 
 <div class="table-wrap">
 
@@ -1459,7 +1456,7 @@ _`}`_
 
 </div>
 
-### <span class="numhead-number">4.5.6\.</span> Error codes
+### <span class="numhead-number">4.4.6\.</span> Error codes
 
 <div class="table-wrap">
 
@@ -1554,7 +1551,7 @@ _`}`_
 
 </div>
 
-## <span class="numhead-number">4.6\.</span> Authentication status
+## <span class="numhead-number">4.5\.</span> Authentication status
 
 <div class="table-wrap">
 
@@ -1594,15 +1591,15 @@ Example:
 
 BASE/authentication/session/93de76af-68c1-4b55-91f7-3dad52b3115d?timeoutMs=10000
 
-### <span class="numhead-number">4.6.1\.</span> Preconditions
+### <span class="numhead-number">4.5.1\.</span> Preconditions
 
 *   Session is present in the system and the request is either running or has been completed less than x minutes ago. 
 
-### <span class="numhead-number">4.6.2\.</span> Postconditions
+### <span class="numhead-number">4.5.2\.</span> Postconditions
 
 *   Request result has been returned to user. 
 
-### <span class="numhead-number">4.6.3\.</span> Response structure 
+### <span class="numhead-number">4.5.3\.</span> Response structure 
 
 <div class="table-wrap">
 
@@ -1780,7 +1777,7 @@ _`}`_
 
 </div>
 
-### <span class="numhead-number">4.6.4\.</span> Error codes
+### <span class="numhead-number">4.5.4\.</span> Error codes
 
 <div class="table-wrap">
 
