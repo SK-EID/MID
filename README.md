@@ -1,9 +1,7 @@
 <div id="page">
 <div id="main" class="aui-page-panel">
 
-<div id="main-header">
-# <span id="title-text">Mobile ID (MID) REST API</span>
-</div>
+# Mobile ID (MID) REST API
 
 <div id="content" class="view">
 <div id="main-content" class="wiki-content group">

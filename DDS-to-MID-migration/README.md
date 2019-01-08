@@ -3,9 +3,9 @@
 Since launching the DDS service a lot has happened:
 
 * REST has gained popularity and adoption over SOAP
-* Digital signature container formats have evolved from *.ddoc, to *.bdoc (internally two separate formats) until *.asice. Due to these (and other internal) changes, DDS has accumulated a lot of complexity and a lot of it is not used.
+* Digital signature container formats have evolved from *.ddoc, to *.bdoc (internally two separate formats) until *.asice. Due to these (and other internal) changes, DDS has accumulated a lot of complexity and a lot of it is no longer used.
 * The movement towards micro-services architecture - DDS is a monolith and thus morally outdated, MID is built using easily scalable micro-services architecture.
-* Launching of Smart-ID proved that authentication/signing functionality should be separated from containers (to provide dedicated micro-services). Majority of customers use Mobile-ID and Smart-ID only for authentication (and not for signing) so to reduce integration costs these services are built as similar as possible and the complexity of creating signed containers has been left out.
+* Launching of Smart-ID proved that authentication/signing functionality should be separated from containers (to provide dedicated micro-services). Majority of customers use Mobile-ID and Smart-ID only for authentication (and not for signing) so to reduce integration costs Smart-ID and MID services are built as similar as possible and the complexity of creating signed containers has been left out.
 
 ## Main differences
 
@@ -15,7 +15,8 @@ Since launching the DDS service a lot has happened:
 | Technology                                          | SOAP | REST
 | Public libraries available to ease integration work | no | yes ([java](https://github.com/SK-EID/mid-rest-java-client)) |
 | Demo applications available                         | no | yes ([java](https://github.com/SK-EID/mid-rest-java-demo)) | 
-| Who needs to calculate 4-digit verification code from the hash | done by DDS | the customer (libraries provide this as a method) | 
+| Who generates the authentication hash               | partly DDS (10 bytes), partly Relying Party (another 10 bytes) | Relying Party |
+| Who needs to calculate 4-digit verification code from the hash | done by DDS | Relying Party (libraries provide this as a method) | 
 | Long-polling support (client makes a request and sending back the response is delayed until the customer has input PIN code (or a timeout is reached) | yes | yes | 
 | Can be used to check if the end user has a Mobile-ID | yes | yes | 
 | Provides authentication with Mobile-ID | yes | yes | 
