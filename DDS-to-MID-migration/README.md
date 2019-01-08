@@ -7,7 +7,7 @@ Since launching the DDS service a lot has happened:
 * The movement towards micro-services architecture - DDS is a monolith and thus morally outdated, MID is built using easily scalable micro-services architecture.
 * Launching of Smart-ID proved that authentication/signing functionality should be separated from containers (to provide dedicated micro-services). Majority of customers use Mobile-ID and Smart-ID only for authentication (and not for signing) so to reduce integration costs these services are built as similar as possible and the complexity of creating signed containers has been left out.
 
-##Main differences
+## Main differences
 
 |               | DDS | MID |
 | ---           | --- | --- |
@@ -26,6 +26,6 @@ Since launching the DDS service a lot has happened:
 | Can be used to verify digitally signed files (DigiDoc/BDOC) and validity of signatures | yes | no | 
 | OSCP during authentication | yes | no | 
 
-## How to create containers
+## How to create and validate containers with MID
 
-Use [DigiDoc4J](https://github.com/open-eid/digidoc4j) or [libdigidocpp](https://github.com/open-eid/libdigidocpp)
+Use [DigiDoc4J](https://github.com/open-eid/digidoc4j) or [libdigidocpp](https://github.com/open-eid/libdigidocpp) libraries.
