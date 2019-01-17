@@ -233,13 +233,13 @@ Description
 
 <tr>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">relyingPartyName</span></td>
+<td colspan="1" class="confluenceTd"><span>relyingPartyName</span></td>
 
 <td colspan="1" class="confluenceTd">string</td>
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Name of the relying party – previously agreed with Application Provider and DigiDocService operator.</span></td>
+<td colspan="1" class="confluenceTd"><span>Name of the relying party – previously agreed with Application Provider and DigiDocService operator.</span></td>
 
 </tr>
 
@@ -263,7 +263,7 @@ Description
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Phone number of the signer with the country code in the format of +xxxxxxxxx</span></td>
+<td colspan="1" class="confluenceTd"><span>Phone number of the signer with the country code in the format of +xxxxxxxxx</span></td>
 
 </tr>
 
@@ -275,7 +275,7 @@ Description
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Identification number of the signer (personal national ID number). For example 38412319871</span></td>
+<td colspan="1" class="confluenceTd"><span>Identification number of the signer (personal national ID number). For example 38412319871</span></td>
 
 </tr>
 
@@ -608,38 +608,38 @@ Description
 <tbody>
 
 <tr>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">relyingPartyName</span></td>
+    <td colspan="1" class="confluenceTd"><span>relyingPartyName</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Name of the Relying Party, previously agreed with Application Provider. Displayed together with displayText and Verification Code on cellphone screen before End User can insert PIN.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Name of the Relying Party, previously agreed with Application Provider. Displayed together with displayText and Verification Code on cellphone screen before End User can insert PIN.</span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd">relyingPartyUUID</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">UUID of the Relying Party - previously agreed with Application Provider.</span></td>
+    <td colspan="1" class="confluenceTd"><span>UUID of the Relying Party - previously agreed with Application Provider.</span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd">phoneNumber</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Phone number of the signer with the country code in the format of +xxxxxxxxx</span></td>
+    <td colspan="1" class="confluenceTd"><span>Phone number of the signer with the country code in the format of +xxxxxxxxx</span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd">nationalIdentityNumber</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Identification number of the signer (personal national ID number)</span></td>
+    <td colspan="1" class="confluenceTd"><span>Identification number of the signer (personal national ID number)</span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd">hash</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Base64 encoded hash function output to be signed.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Base64 encoded hash function output to be signed.</span></td>
 </tr>
 
 <tr>
@@ -650,17 +650,24 @@ Description
 </tr>
 
 <tr>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">language</span></td>
+    <td colspan="1" class="confluenceTd"><span>language</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Language for user dialog in mobile phone. 3-letters capitalized acronyms are used. Possible values: EST, ENG, RUS, LIT.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Language for user dialog in mobile phone. 3-letters capitalized acronyms are used. Possible values: EST, ENG, RUS, LIT.</span></td>
 </tr>
 
 <tr>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">displayText</span></td>
+    <td colspan="1" class="confluenceTd"><span>displayText</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd"></td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Text displayed in addition to relyingPartyName and Verification Code before asking authentication PIN. Maximum length is 40 bytes. In case of Latin letters, this means also a 40 character long text, but Cyrillic characters may be encoded by two bytes and you will not be able to send more than 20 symbols.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Text displayed in addition to relyingPartyName and Verification Code before asking authentication PIN. Maximum length is 40 bytes that is either 20 or 40 characters depending on the encoding - see displayTextFormat. </span></td>
+</tr>
+
+<tr>
+    <td colspan="1" class="confluenceTd"><span>displayTextFormat</span></td>
+    <td colspan="1" class="confluenceTd">string</td>
+    <td colspan="1" class="confluenceTd"></td>
+    <td colspan="1" class="confluenceTd"> Specifies which characters and how many can be used in "displayText". Possible values are "GSM-7" and "UCS-2”, if nothing is specified then defaults to "GSM-7". GSM-7 allows displayText to contain up to 40 characters from standard GSM 7-bit alpabet including up to 5 characters from extension table ( €[]^|{}\ ). UCS-2 allows up to 20 characters from UCS-2 alpabet (this has all Cyrillic characters, ÕŠŽ šžõ and ĄČĘĖĮŠŲŪŽ ąčęėįšųūž). [More info about encoding](https://en.wikipedia.org/wiki/GSM_03.38).</span></td>
 </tr>
 
 </tbody>
@@ -680,7 +687,8 @@ Description
     "hash": "0nbgC2fVdLVQFZJdBbmG7oPoElpCYsQMtrY0c0wKYRg=",
     "hashType": "SHA256",
     "language": "ENG",
-    "displayText": "This is display text."
+    "displayText": "This is display text.",
+    "displayTextFormat": "GSM-7"
 }
 ```
 
@@ -914,13 +922,13 @@ Description
 
 <tr>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">sessionId</span></td>
+<td colspan="1" class="confluenceTd"><span>sessionId</span></td>
 
 <td colspan="1" class="confluenceTd">string</td>
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Session ID</span></td>
+<td colspan="1" class="confluenceTd"><span>Session ID</span></td>
 
 </tr>
 
