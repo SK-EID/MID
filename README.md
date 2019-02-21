@@ -653,14 +653,18 @@ Description
     <td colspan="1" class="confluenceTd"><span>language</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span>Language for user dialog in mobile phone. 3-letters capitalized acronyms are used. Possible values: EST, ENG, RUS, LIT.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Language for user dialog in mobile phone. 3-letters capitalized acronyms are used. Possible values: EST, ENG, RUS, LIT.
+    NB! If you use language="LIT" to send to Estonian number (+372...) or you use language="EST" to send to Lithuanian number (+370...) then internally language is replaced with "ENG".
+    </span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd"><span>displayText</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd"></td>
-    <td colspan="1" class="confluenceTd"><span>Text displayed in addition to relyingPartyName and Verification Code before asking authentication PIN. Maximum length is 40 bytes that is either 20 or 40 characters depending on the encoding - see displayTextFormat. </span></td>
+    <td colspan="1" class="confluenceTd"><span>Text displayed in addition to relyingPartyName and Verification Code before asking authentication PIN. Maximum length is 40 bytes that is either 20 or 40 characters depending on the encoding - see displayTextFormat. 
+    If you set displayTextFormat="GSM-7" then all characters not beloning to this alphabet are replaced with spaces.
+    </span></td>
 </tr>
 
 <tr>
@@ -1351,8 +1355,32 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 </div>
 
+# <span class="numhead-number">4.</span> Helper libraries and demo applications
 
+There are client libraries provided for easier integration for Java and PHP and also
+demo applications that demonstrate usage of the client libraries.
 
+## <span class="numhead-number">4.1\.</span> Java
+
+Java Clint allows using all of the MID-REST functionality.
+
+* [Java Client](https://github.com/SK-EID/mid-rest-java-client)
+* [Java Demo Application](https://github.com/SK-EID/mid-rest-java-demo)
+
+## <span class="numhead-number">4.2\.</span> PHP
+
+Provided PHP functionality only supports authentication and fetching the signing certificate.
+
+* [PHP Client](https://github.com/SK-EID/mid-rest-php-client)
+* [PHP Demo Application](https://github.com/SK-EID/mid-rest-php-demo)
+
+# <span class="numhead-number">5.</span> Comparison with DigiDocService
+
+Previous generation MID-REST integration has been provided with SOAP-based DigiDocService (DDS).
+Following page lists the main differences between DDS and new MID-REST (MID) and provides
+hints for migration from DDS to MID-
+
+* [MID-REST compared to DDS](https://github.com/aasaru/MID/tree/master/DDS-to-MID-migration)
 
 
 </div>
