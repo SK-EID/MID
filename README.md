@@ -45,7 +45,11 @@
         *   [3.3.7. Example responses](#337-example-responses)
         *   [3.3.8. Session end result codes](#338-session-end-result-codes)
         *   [3.3.9. HTTP error codes](#339-http-error-codes)
-        
+*   [4\. Helper libraries and demo applications](#4-helper-libraries-and-demo-applications)
+    *   [4.1\. Java](#41-java)
+    *   [4.2\. PHP](#42-php)
+*   [5\. Comparison with DigiDocService](#5-comparison-with-digidocservice)
+
 <div>  
 
 # <span class="numhead-number">1\.</span> Introduction
