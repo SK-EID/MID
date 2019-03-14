@@ -472,16 +472,6 @@ For all the result values HTTP status code 200 is used.
 
 <tr>
 
-<td class="confluenceTd">404</td>
-
-<td class="confluenceTd">Something went wrong, response not found</td>
-
-<td class="confluenceTd">Cert-store cannot find response for given request.</td>
-
-</tr>
-
-<tr>
-
 <td colspan="1" class="confluenceTd">405</td>
 
 <td colspan="1" class="confluenceTd">Method Not Allowed</td>
@@ -495,9 +485,9 @@ For all the result values HTTP status code 200 is used.
 
 <td class="confluenceTd">500</td>
 
-<td class="confluenceTd">Error retrieving certificate response</td>
+<td class="confluenceTd">Internal error</td>
 
-<td class="confluenceTd">Getting certificate from cert-store has failed.</td>
+<td class="confluenceTd">MID-REST internal error. Retry the operation.</td>
 
 </tr>
 
@@ -799,16 +789,6 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 
 <tr>
 
-<td class="confluenceTd">404</td>
-
-<td class="confluenceTd">Something went wrong, response not found</td>
-
-<td class="confluenceTd">When unexpected internal error occurs.</td>
-
-</tr>
-
-<tr>
-
 <td colspan="1" class="confluenceTd">405</td>
 
 <td colspan="1" class="confluenceTd">Method Not Allowed</td>
@@ -821,9 +801,9 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 
 <td class="confluenceTd">500</td>
 
-<td class="confluenceTd">Error when connecting to subsystem.</td>
+<td class="confluenceTd">Internal error</td>
 
-<td class="confluenceTd">When retrieving certificate from certification store or getting no response from system that communicates with the cellphone</td>
+<td class="confluenceTd">MID-REST internal error. Try start the process again from the beginning.</td>
 
 </tr>
 </tbody>
@@ -1206,41 +1186,18 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <tr>
 
-<td colspan="1" class="confluenceTd">ERROR</td>
-
-<td colspan="1" class="confluenceTd"><span>There was error getting response from MSSP/certificate service</span></td>
-
-</tr>
-
-<tr>
-
 <td class="confluenceTd">NOT_MID_CLIENT</td>
 
 <td class="confluenceTd"> <span>Given user has no active certificates and is not MID client.</span></td>
 
 </tr>
 
-<tr>
-
-<td class="confluenceTd">EXPIRED_TRANSACTION</td>
-
-<td class="confluenceTd"><span>Transaction timed out on MSSP (the system communicating with the phone)</span></td>
-
-</tr>
 
 <tr>
 
 <td colspan="1" class="confluenceTd">USER_CANCELLED</td>
 
 <td colspan="1" class="confluenceTd"><span>User cancelled the operation</span></td>
-
-</tr>
-
-<tr>
-
-<td colspan="1" class="confluenceTd"><span>MID_NOT_READY</span></td>
-
-<td colspan="1" class="confluenceTd"><span>Mobile-ID not ready</span></td>
 
 </tr>
 
@@ -1272,7 +1229,7 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <td colspan="1" class="confluenceTd"><span>SIGNATURE_HASH_MISMATCH</span></td>
 
-<td colspan="1" class="confluenceTd"><span>Hash does not match with certificate type</span></td>
+<td colspan="1" class="confluenceTd"><span>Mobile-ID configuration on user's SIM card differs from what is configured on service provider's side. User needs to contact his/her mobile operator.</span></td>
 
 </tr>
 
@@ -1280,7 +1237,7 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <td colspan="1" class="confluenceTd"><span>INTERNAL_ERROR</span></td>
 
-<td colspan="1" class="confluenceTd"><span>All other technical errors</span></td>
+<td colspan="1" class="confluenceTd"><span>MID-REST internal error. Try again.</span></td>
 
 </tr>
 
@@ -1347,8 +1304,8 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <tr>
 <td class="confluenceTd">500</td>
-<td class="confluenceTd">Error retrieving mssp response</td>
-<td class="confluenceTd">Error getting session status from MSSP (system communicating with the phone)</td>
+<td class="confluenceTd">Internal error</td>
+<td class="confluenceTd">MID-REST internal error. Try start the process again from the beginning.</td>
 </tr>
 
 

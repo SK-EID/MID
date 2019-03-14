@@ -27,6 +27,11 @@ Since launching the DDS service a lot has happened:
 | Can be used to verify digitally signed files (DigiDoc/BDOC) and validity of signatures | yes | no | 
 | OSCP during authentication | yes | no | 
 
+
 ## How to create and validate containers with MID
 
 Use [DigiDoc4J](https://github.com/open-eid/digidoc4j) or [libdigidocpp](https://github.com/open-eid/libdigidocpp) libraries.
+
+# Main differences between Smart-ID and MID
+
+MID verification codes are always in range 0000...8192, but Smart-ID verification codes spread out more widely - 0000...9999.
