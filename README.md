@@ -34,9 +34,9 @@
         *   [3.2.3\. Request parameters](#323-request-parameters)
         *   [3.2.4\. Example request](#324-example-request)
         *   [3.2.5\. Example response](#325-example-response)
-        *   [3.2.6\. Error codes](#326-error-codes)
-    *   [3.3\. Status of signing and authentication](#33status-of-signing-and-authentication)
-        *   [3.3.1\. Pre-Conditions](#331-Pre-Conditions)
+        *   [3.2.6\. Error codes](#326-error-conditions)
+    *   [3.3\. Status of signing and authentication](#33-status-of-signing-and-authentication)
+        *   [3.3.1\. Pre-Conditions](#331-Pre-Conditions)   
         *   [3.3.2\. Post-Conditions](#332-Post-Conditions)
         *   [3.3.3. Request parameters](#333-request-parameters)
         *   [3.3.4. Long polling](#334-long-polling)
@@ -392,7 +392,7 @@ For all the result values HTTP status code 200 is used.
 
 <tr>
 
-<th class="confluenceTh">Response</th>
+<th class="confluenceTh">Result</th>
 
 <th class="confluenceTh">Reason</th>
 
@@ -402,7 +402,7 @@ For all the result values HTTP status code 200 is used.
 
 <td class="confluenceTd">OK</td>
 
-<td class="confluenceTd"><span>Active certificate was found</span></td>
+<td class="confluenceTd"><span>An active certificate was found</span></td>
 
 </tr>
 
@@ -440,7 +440,7 @@ For all the result values HTTP status code 200 is used.
 
 <tr>
 
-<th class="confluenceTh">Error code</th>
+<th class="confluenceTh">HTTP status code</th>
 
 <th class="confluenceTh">Error message</th>
 
@@ -454,9 +454,9 @@ For all the result values HTTP status code 200 is used.
 
 <td colspan="1" class="confluenceTd">400</td>
 
-<td colspan="1" class="confluenceTd">RelyingParty name cannot be null.</td>
+<td colspan="1" class="confluenceTd">{parameterName} cannot be null.</td>
 
-<td colspan="1" class="confluenceTd">Parameter in request is missing on has incorrect format/value</td>
+<td colspan="1" class="confluenceTd">Required parameter in request is missing on has incorrect format/value</td>
 
 </tr>
 
@@ -735,7 +735,7 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 }
 ```
 
-### <span class="numhead-number">3.2.6\.</span> Error codes
+### <span class="numhead-number">3.2.6\.</span> Error conditions
 
 <div class="table-wrap">
 
@@ -745,7 +745,7 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 
 <tr>
 
-<th class="confluenceTh">Error code</th>
+<th class="confluenceTh">HTTP status code</th>
 
 <th class="confluenceTh">Error message</th>
 
@@ -1154,6 +1154,10 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 ### <span class="numhead-number">3.3.8\.</span> Session end result codes
 
+The following is a complete list of possible result codes returned by the service.
+For all of them a HTTP 200 status code and a JSON string is returned with "state": "COMPLETE"
+and "result" with one of the following values:
+
 <div class="table-wrap">
 
 <table class="confluenceTable"><colgroup><col> <col></colgroup> 
@@ -1162,7 +1166,7 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <tr>
 
-<th class="confluenceTh">Response</th>
+<th class="confluenceTh">Result</th>
 
 <th class="confluenceTh">Reason</th>
 
@@ -1203,6 +1207,16 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <tr>
 
+<td colspan="1" class="confluenceTd"><span>SIGNATURE_HASH_MISMATCH</span></td>
+
+<td colspan="1" class="confluenceTd"><span>Mobile-ID configuration on user's SIM card differs from what is configured on service provider's side. User needs to contact his/her mobile operator.</span></td>
+
+</tr>
+
+
+
+<tr>
+
 <td colspan="1" class="confluenceTd"><span>PHONE_ABSENT</span></td>
 
 <td colspan="1" class="confluenceTd"><span>Sim not available</span></td>
@@ -1225,21 +1239,6 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd"><span>SIGNATURE_HASH_MISMATCH</span></td>
-
-<td colspan="1" class="confluenceTd"><span>Mobile-ID configuration on user's SIM card differs from what is configured on service provider's side. User needs to contact his/her mobile operator.</span></td>
-
-</tr>
-
-<tr>
-
-<td colspan="1" class="confluenceTd"><span>INTERNAL_ERROR</span></td>
-
-<td colspan="1" class="confluenceTd"><span>MID-REST internal error. Try again.</span></td>
-
-</tr>
 
 </tbody>
 
