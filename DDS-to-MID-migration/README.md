@@ -13,8 +13,8 @@ Since launching the DDS service a lot has happened:
 | ---           | --- | --- |
 | Documentation | http://sk-eid.github.io/dds-documentation/ | https://github.com/SK-EID/MID |
 | Technology                                          | SOAP | REST
-| Public libraries available to ease integration work | no | yes ([java](https://github.com/SK-EID/mid-rest-java-client) and  ([php](https://github.com/SK-EID/mid-rest-php-client)) |
-| Demo applications available                         | no | yes ([java](https://github.com/SK-EID/mid-rest-java-demo)) and ([php](https://github.com/SK-EID/mid-rest-php-demo)) | 
+| Public libraries available to ease integration work | no | yes ([java](https://github.com/SK-EID/mid-rest-java-client) and [php](https://github.com/SK-EID/mid-rest-php-client)) |
+| Demo applications available                         | no | yes ([java](https://github.com/SK-EID/mid-rest-java-demo) and [php](https://github.com/SK-EID/mid-rest-php-demo)) | 
 | Who generates the authentication hash               | partly DDS (10 bytes), partly Relying Party (another 10 bytes) | Relying Party |
 | Who needs to calculate 4-digit verification code from the hash | done by DDS | Relying Party (libraries provide this as a method) | 
 | Long-polling support (client makes a request and sending back the response is delayed until the customer has input PIN code (or a timeout is reached) | yes | yes | 
