@@ -13,14 +13,16 @@ Since launching the DDS service a lot has happened:
 | ---           | --- | --- |
 | Documentation | http://sk-eid.github.io/dds-documentation/ | https://github.com/SK-EID/MID |
 | Technology                                          | SOAP | REST
-| Public libraries available to ease integration work | no | yes ([java](https://github.com/SK-EID/mid-rest-java-client)) |
-| Demo applications available                         | no | yes ([java](https://github.com/SK-EID/mid-rest-java-demo)) | 
+| Public libraries available to ease integration work | no | yes ([java](https://github.com/SK-EID/mid-rest-java-client) and  ([php](https://github.com/SK-EID/mid-rest-php-client)) |
+| Demo applications available                         | no | yes ([java](https://github.com/SK-EID/mid-rest-java-demo)) and ([php](https://github.com/SK-EID/mid-rest-php-demo)) | 
 | Who generates the authentication hash               | partly DDS (10 bytes), partly Relying Party (another 10 bytes) | Relying Party |
 | Who needs to calculate 4-digit verification code from the hash | done by DDS | Relying Party (libraries provide this as a method) | 
 | Long-polling support (client makes a request and sending back the response is delayed until the customer has input PIN code (or a timeout is reached) | yes | yes | 
 | Can be used to check if the end user has a Mobile-ID | yes | yes | 
 | Provides authentication with Mobile-ID | yes | yes | 
 | Provides hash signing with Mobile-ID.  | yes | yes | 
+| Can authenticate Estonian users with providing phone number only (or only national ID-code)  | yes| no| 
+| Can authenticate Lithuanian users with providing phone number only (or only national ID-code)| no | no|  
 | Can be used for digital signing of DigiDoc/BDOC with ID card (and other smartcards | yes | no | 
 | Can be used to verify a certificate's validity (including any smartcard) | yes | no | 
 | Can be used to create DigiDoc/BDOC containers (even when signing with smart-card) | yes | no | 
