@@ -944,7 +944,7 @@ Description
 ### <span class="numhead-number">3.3.4.</span> Long polling
 
 In order to avoid making many requests towards Application Provider the E-Service provider is recommended to use long polling
-by setting parameter timeoutMs.
+by setting parameter timeoutMs. 
 
 If the session is in RUNNING state (meaning waiting for user to enter the PIN to the cellphone and the response
 to arrive) the server waits this amount of time before responding.
@@ -960,6 +960,10 @@ encouraged to immediately create a new long polling request.
 The E-Service provider should not make new requests for given session before the previous request gets a response back.
 However, if Application Provider detects a new request with the same session ID then the previous request is discarded and 
 response with state=RUNNING is replied back to the previous request.
+
+NB! E-Service provider should set its own internal request timeout to a slightly higher value (add additional ~1500ms).
+For example if E-Service provider makes a request with ?timeoutMs=60000 then it should set a request timeout of 61500ms 
+(and not use the same value of 60000ms) as it takes additional time to transfer the request and response over the network.
 
 
 ### <span class="numhead-number">3.3.5\.</span> Response structure
