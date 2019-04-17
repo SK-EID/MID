@@ -1,9 +1,7 @@
 <div id="page">
 <div id="main" class="aui-page-panel">
 
-<div id="main-header">
-# <span id="title-text">Mobile ID (MID) REST API</span>
-</div>
+# Mobile ID (MID) REST API
 
 <div id="content" class="view">
 <div id="main-content" class="wiki-content group">
@@ -36,9 +34,9 @@
         *   [3.2.3\. Request parameters](#323-request-parameters)
         *   [3.2.4\. Example request](#324-example-request)
         *   [3.2.5\. Example response](#325-example-response)
-        *   [3.2.6\. Error codes](#326-error-codes)
-    *   [3.3\. Status of signing and authentication](#33status-of-signing-and-authentication)
-        *   [3.3.1\. Pre-Conditions](#331-Pre-Conditions)
+        *   [3.2.6\. Error codes](#326-error-conditions)
+    *   [3.3\. Status of signing and authentication](#33-status-of-signing-and-authentication)
+        *   [3.3.1\. Pre-Conditions](#331-Pre-Conditions)   
         *   [3.3.2\. Post-Conditions](#332-Post-Conditions)
         *   [3.3.3. Request parameters](#333-request-parameters)
         *   [3.3.4. Long polling](#334-long-polling)
@@ -47,7 +45,11 @@
         *   [3.3.7. Example responses](#337-example-responses)
         *   [3.3.8. Session end result codes](#338-session-end-result-codes)
         *   [3.3.9. HTTP error codes](#339-http-error-codes)
-        
+*   [4\. Helper libraries and demo applications](#4-helper-libraries-and-demo-applications)
+    *   [4.1\. Java](#41-java)
+    *   [4.2\. PHP](#42-php)
+*   [5\. Comparison with DigiDocService](#5-comparison-with-digidocservice)
+
 <div>  
 
 # <span class="numhead-number">1\.</span> Introduction
@@ -235,13 +237,13 @@ Description
 
 <tr>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">relyingPartyName</span></td>
+<td colspan="1" class="confluenceTd"><span>relyingPartyName</span></td>
 
 <td colspan="1" class="confluenceTd">string</td>
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Name of the relying party – previously agreed with Application Provider and DigiDocService operator.</span></td>
+<td colspan="1" class="confluenceTd"><span>Name of the relying party – previously agreed with Application Provider and DigiDocService operator.</span></td>
 
 </tr>
 
@@ -265,7 +267,7 @@ Description
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Phone number of the signer with the country code in the format of +xxxxxxxxx</span></td>
+<td colspan="1" class="confluenceTd"><span>Phone number of the signer with the country code in the format of +xxxxxxxxx</span></td>
 
 </tr>
 
@@ -277,7 +279,7 @@ Description
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Identification number of the signer (personal national ID number). For example 38412319871</span></td>
+<td colspan="1" class="confluenceTd"><span>Identification number of the signer (personal national ID number). For example 38412319871</span></td>
 
 </tr>
 
@@ -390,7 +392,7 @@ For all the result values HTTP status code 200 is used.
 
 <tr>
 
-<th class="confluenceTh">Response</th>
+<th class="confluenceTh">Result</th>
 
 <th class="confluenceTh">Reason</th>
 
@@ -400,7 +402,7 @@ For all the result values HTTP status code 200 is used.
 
 <td class="confluenceTd">OK</td>
 
-<td class="confluenceTd"><span>Active certificate was found</span></td>
+<td class="confluenceTd"><span>An active certificate was found</span></td>
 
 </tr>
 
@@ -438,7 +440,7 @@ For all the result values HTTP status code 200 is used.
 
 <tr>
 
-<th class="confluenceTh">Error code</th>
+<th class="confluenceTh">HTTP status code</th>
 
 <th class="confluenceTh">Error message</th>
 
@@ -452,9 +454,9 @@ For all the result values HTTP status code 200 is used.
 
 <td colspan="1" class="confluenceTd">400</td>
 
-<td colspan="1" class="confluenceTd">RelyingParty name cannot be null.</td>
+<td colspan="1" class="confluenceTd">{parameterName} cannot be null.</td>
 
-<td colspan="1" class="confluenceTd">Parameter in request is missing on has incorrect format/value</td>
+<td colspan="1" class="confluenceTd">Required parameter in request is missing on has incorrect format/value</td>
 
 </tr>
 
@@ -465,16 +467,6 @@ For all the result values HTTP status code 200 is used.
 <td colspan="1" class="confluenceTd">Failed to authorize user</td>
 
 <td colspan="1" class="confluenceTd">User authorization by relyingPartyName, relyingPartyUUID and IP-address fails</td>
-
-</tr>
-
-<tr>
-
-<td class="confluenceTd">404</td>
-
-<td class="confluenceTd">Something went wrong, response not found</td>
-
-<td class="confluenceTd">Cert-store cannot find response for given request.</td>
 
 </tr>
 
@@ -493,9 +485,9 @@ For all the result values HTTP status code 200 is used.
 
 <td class="confluenceTd">500</td>
 
-<td class="confluenceTd">Error retrieving certificate response</td>
+<td class="confluenceTd">Internal error</td>
 
-<td class="confluenceTd">Getting certificate from cert-store has failed.</td>
+<td class="confluenceTd">MID-REST internal error. Retry the operation.</td>
 
 </tr>
 
@@ -610,38 +602,38 @@ Description
 <tbody>
 
 <tr>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">relyingPartyName</span></td>
+    <td colspan="1" class="confluenceTd"><span>relyingPartyName</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Name of the Relying Party, previously agreed with Application Provider. Displayed together with displayText and Verification Code on cellphone screen before End User can insert PIN.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Name of the Relying Party, previously agreed with Application Provider. Displayed together with displayText and Verification Code on cellphone screen before End User can insert PIN.</span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd">relyingPartyUUID</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">UUID of the Relying Party - previously agreed with Application Provider.</span></td>
+    <td colspan="1" class="confluenceTd"><span>UUID of the Relying Party - previously agreed with Application Provider.</span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd">phoneNumber</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Phone number of the signer with the country code in the format of +xxxxxxxxx</span></td>
+    <td colspan="1" class="confluenceTd"><span>Phone number of the signer with the country code in the format of +xxxxxxxxx</span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd">nationalIdentityNumber</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Identification number of the signer (personal national ID number)</span></td>
+    <td colspan="1" class="confluenceTd"><span>Identification number of the signer (personal national ID number)</span></td>
 </tr>
 
 <tr>
     <td colspan="1" class="confluenceTd">hash</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Base64 encoded hash function output to be signed.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Base64 encoded hash function output to be signed.</span></td>
 </tr>
 
 <tr>
@@ -652,17 +644,28 @@ Description
 </tr>
 
 <tr>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">language</span></td>
+    <td colspan="1" class="confluenceTd"><span>language</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Language for user dialog in mobile phone. 3-letters capitalized acronyms are used. Possible values: EST, ENG, RUS, LIT.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Language for user dialog in mobile phone. 3-letters capitalized acronyms are used. Possible values: EST, ENG, RUS, LIT.
+    NB! If you use language="LIT" to send to Estonian number (+372...) or you use language="EST" to send to Lithuanian number (+370...) then internally language is replaced with "ENG".
+    </span></td>
 </tr>
 
 <tr>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">displayText</span></td>
+    <td colspan="1" class="confluenceTd"><span>displayText</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd"></td>
-    <td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Text displayed in addition to relyingPartyName and Verification Code before asking authentication PIN. Maximum length is 40 bytes. In case of Latin letters, this means also a 40 character long text, but Cyrillic characters may be encoded by two bytes and you will not be able to send more than 20 symbols.</span></td>
+    <td colspan="1" class="confluenceTd"><span>Text displayed in addition to relyingPartyName and Verification Code before asking authentication PIN. Maximum length is 40 bytes that is either 20 or 40 characters depending on the encoding - see displayTextFormat. 
+    If you set displayTextFormat="GSM-7" then all characters not beloning to this alphabet are replaced with spaces.
+    </span></td>
+</tr>
+
+<tr>
+    <td colspan="1" class="confluenceTd"><span>displayTextFormat</span></td>
+    <td colspan="1" class="confluenceTd">string</td>
+    <td colspan="1" class="confluenceTd"></td>
+    <td colspan="1" class="confluenceTd"> Specifies which characters and how many can be used in "displayText". Possible values are "GSM-7" and "UCS-2”, if nothing is specified then defaults to "GSM-7". GSM-7 allows displayText to contain up to 40 characters from standard GSM 7-bit alpabet including up to 5 characters from extension table ( €[]^|{}\ ). UCS-2 allows up to 20 characters from UCS-2 alpabet (this has all Cyrillic characters, ÕŠŽ šžõ and ĄČĘĖĮŠŲŪŽ ąčęėįšųūž). [More info about encoding](https://en.wikipedia.org/wiki/GSM_03.38).</span></td>
 </tr>
 
 </tbody>
@@ -682,7 +685,8 @@ Description
     "hash": "0nbgC2fVdLVQFZJdBbmG7oPoElpCYsQMtrY0c0wKYRg=",
     "hashType": "SHA256",
     "language": "ENG",
-    "displayText": "This is display text."
+    "displayText": "This is display text.",
+    "displayTextFormat": "GSM-7"
 }
 ```
 
@@ -731,7 +735,7 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 }
 ```
 
-### <span class="numhead-number">3.2.6\.</span> Error codes
+### <span class="numhead-number">3.2.6\.</span> Error conditions
 
 <div class="table-wrap">
 
@@ -741,7 +745,7 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 
 <tr>
 
-<th class="confluenceTh">Error code</th>
+<th class="confluenceTh">HTTP status code</th>
 
 <th class="confluenceTh">Error message</th>
 
@@ -785,16 +789,6 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 
 <tr>
 
-<td class="confluenceTd">404</td>
-
-<td class="confluenceTd">Something went wrong, response not found</td>
-
-<td class="confluenceTd">When unexpected internal error occurs.</td>
-
-</tr>
-
-<tr>
-
 <td colspan="1" class="confluenceTd">405</td>
 
 <td colspan="1" class="confluenceTd">Method Not Allowed</td>
@@ -807,9 +801,9 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 
 <td class="confluenceTd">500</td>
 
-<td class="confluenceTd">Error when connecting to subsystem.</td>
+<td class="confluenceTd">Internal error</td>
 
-<td class="confluenceTd">When retrieving certificate from certification store or getting no response from system that communicates with the cellphone</td>
+<td class="confluenceTd">MID-REST internal error. Try start the process again from the beginning.</td>
 
 </tr>
 </tbody>
@@ -916,13 +910,13 @@ Description
 
 <tr>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">sessionId</span></td>
+<td colspan="1" class="confluenceTd"><span>sessionId</span></td>
 
 <td colspan="1" class="confluenceTd">string</td>
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span style="color: rgb(52,56,56);">Session ID</span></td>
+<td colspan="1" class="confluenceTd"><span>Session ID</span></td>
 
 </tr>
 
@@ -950,7 +944,7 @@ Description
 ### <span class="numhead-number">3.3.4.</span> Long polling
 
 In order to avoid making many requests towards Application Provider the E-Service provider is recommended to use long polling
-by setting parameter timeoutMs.
+by setting parameter timeoutMs. 
 
 If the session is in RUNNING state (meaning waiting for user to enter the PIN to the cellphone and the response
 to arrive) the server waits this amount of time before responding.
@@ -966,6 +960,10 @@ encouraged to immediately create a new long polling request.
 The E-Service provider should not make new requests for given session before the previous request gets a response back.
 However, if Application Provider detects a new request with the same session ID then the previous request is discarded and 
 response with state=RUNNING is replied back to the previous request.
+
+NB! E-Service provider should set its own internal request timeout to a slightly higher value (add additional ~1500ms).
+For example if E-Service provider makes a request with ?timeoutMs=60000 then it should set a request timeout of 61500ms 
+(and not use the same value of 60000ms) as it takes additional time to transfer the request and response over the network.
 
 
 ### <span class="numhead-number">3.3.5\.</span> Response structure
@@ -1160,6 +1158,10 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 ### <span class="numhead-number">3.3.8\.</span> Session end result codes
 
+The following is a complete list of possible result codes returned by the service.
+For all of them a HTTP 200 status code and a JSON string is returned with "state": "COMPLETE"
+and "result" with one of the following values:
+
 <div class="table-wrap">
 
 <table class="confluenceTable"><colgroup><col> <col></colgroup> 
@@ -1168,7 +1170,7 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <tr>
 
-<th class="confluenceTh">Response</th>
+<th class="confluenceTh">Result</th>
 
 <th class="confluenceTh">Reason</th>
 
@@ -1192,27 +1194,12 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <tr>
 
-<td colspan="1" class="confluenceTd">ERROR</td>
-
-<td colspan="1" class="confluenceTd"><span>There was error getting response from MSSP/certificate service</span></td>
-
-</tr>
-
-<tr>
-
 <td class="confluenceTd">NOT_MID_CLIENT</td>
 
 <td class="confluenceTd"> <span>Given user has no active certificates and is not MID client.</span></td>
 
 </tr>
 
-<tr>
-
-<td class="confluenceTd">EXPIRED_TRANSACTION</td>
-
-<td class="confluenceTd"><span>Transaction timed out on MSSP (the system communicating with the phone)</span></td>
-
-</tr>
 
 <tr>
 
@@ -1224,11 +1211,13 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <tr>
 
-<td colspan="1" class="confluenceTd"><span>MID_NOT_READY</span></td>
+<td colspan="1" class="confluenceTd"><span>SIGNATURE_HASH_MISMATCH</span></td>
 
-<td colspan="1" class="confluenceTd"><span>Mobile-ID not ready</span></td>
+<td colspan="1" class="confluenceTd"><span>Mobile-ID configuration on user's SIM card differs from what is configured on service provider's side. User needs to contact his/her mobile operator.</span></td>
 
 </tr>
+
+
 
 <tr>
 
@@ -1254,21 +1243,6 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd"><span>SIGNATURE_HASH_MISMATCH</span></td>
-
-<td colspan="1" class="confluenceTd"><span>Hash does not match with certificate type</span></td>
-
-</tr>
-
-<tr>
-
-<td colspan="1" class="confluenceTd"><span>INTERNAL_ERROR</span></td>
-
-<td colspan="1" class="confluenceTd"><span>All other technical errors</span></td>
-
-</tr>
 
 </tbody>
 
@@ -1333,8 +1307,8 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 <tr>
 <td class="confluenceTd">500</td>
-<td class="confluenceTd">Error retrieving mssp response</td>
-<td class="confluenceTd">Error getting session status from MSSP (system communicating with the phone)</td>
+<td class="confluenceTd">Internal error</td>
+<td class="confluenceTd">MID-REST internal error. Try start the process again from the beginning.</td>
 </tr>
 
 
@@ -1345,8 +1319,32 @@ The Application Provider has given up waiting for it to arrive and responds with
 
 </div>
 
+# <span class="numhead-number">4.</span> Helper libraries and demo applications
 
+There are client libraries provided for easier integration for Java and PHP and also
+demo applications that demonstrate usage of the client libraries.
 
+## <span class="numhead-number">4.1\.</span> Java
+
+Java Clint allows using all of the MID-REST functionality.
+
+* [Java Client](https://github.com/SK-EID/mid-rest-java-client)
+* [Java Demo Application](https://github.com/SK-EID/mid-rest-java-demo)
+
+## <span class="numhead-number">4.2\.</span> PHP
+
+Provided PHP functionality only supports authentication and fetching the signing certificate.
+
+* [PHP Client](https://github.com/SK-EID/mid-rest-php-client)
+* [PHP Demo Application](https://github.com/SK-EID/mid-rest-php-demo)
+
+# <span class="numhead-number">5.</span> Comparison with DigiDocService
+
+Previous generation MID-REST integration has been provided with SOAP-based DigiDocService (DDS).
+Following page lists the main differences between DDS and new MID-REST (MID) and provides
+hints for migration from DDS to MID-
+
+* [MID-REST compared to DDS](https://github.com/aasaru/MID/tree/master/DDS-to-MID-migration)
 
 
 </div>
