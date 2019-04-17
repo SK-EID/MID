@@ -1344,7 +1344,7 @@ Previous generation MID-REST integration has been provided with SOAP-based DigiD
 Following page lists the main differences between DDS and new MID-REST (MID) and provides
 hints for migration from DDS to MID-
 
-* [MID-REST compared to DDS](https://github.com/aasaru/MID/tree/master/DDS-to-MID-migration)
+* [MID-REST compared to DDS](https://github.com/SK-EID/MID/blob/master/DDS-to-MID-migration/README.md)
 
 
 </div>
