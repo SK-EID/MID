@@ -18,6 +18,7 @@
          *   [2.4.1\. Verification code calculation algorithm](#241-verification-code-calculation-algorithm)
     *  [2.5\. HTTP status code usage](#25-http-status-code-usage)
     *  [2.6\. Session management](#26-session-management)
+    *  [2.7. Backwards compatibility](#27-backwards-compatibility)
 *   [3\. REST API flows](#3-rest-api-flows)
     *   [3.1\. Certificate request](#31-certificate-request)
         *   [3.1.1\. Pre-Conditions ](#311-Pre-Conditions)
@@ -45,6 +46,10 @@
         *   [3.3.7. Example responses](#337-example-responses)
         *   [3.3.8. Session end result codes](#338-session-end-result-codes)
         *   [3.3.9. HTTP error codes](#339-http-error-codes)
+    *   [3.4. API version](#34-api-version)
+        *   [3.4.1. Example response](#341-example-response)
+        *   [3.4.2. Response structure](#342-response-structure)
+        *   [3.4.3. Public demo environment version number](#343-public-demo-environment-version-number)
 *   [4\. Helper libraries and demo applications](#4-helper-libraries-and-demo-applications)
     *   [4.1\. Java](#41-java)
     *   [4.2\. PHP](#42-php)
@@ -143,6 +148,23 @@ As this can take time - these processes are split in two parts:
 
 * First request initiates the process and immediately returns session id to the Relying Party.
 * Relying Party has to then periodically make status check requests until the process has finished.
+
+## <span class="numhead-number">2.7.</span> Backwards compatibility
+
+MID-REST API-s remain backwards compatible with following exceptions:
+
+* new request fields may be added over time
+* new fields may be added to JSON responses. Developers need to take this into account when
+de-serializing JSON fields into objects. For example when using Jackson to de-serialize JSON
+objects into Java objects the Java classes should be annotated with
+`@JsonIgnoreProperties(ignoreUnknown = true)` 
+or the configuration parameter
+[FAIL_ON_UNKNOWN_PROPERTIES](https://github.com/FasterXML/jackson-databind/wiki/Deserialization-Features)
+should be set to false. Otherwise Jackson starts throwing
+`com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException`
+when a new field is added to a MID-REST API response.
+
+See [chapter 3.4.](#34-api-version) for fetching current API version.
 
 # <span class="numhead-number">3.</span> REST API flows
 
@@ -1069,7 +1091,8 @@ Description
     <td colspan="1" class="confluenceTd">cert</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">Only if process was authentication and signature is present.</td>
-    <td colspan="1" class="confluenceTd">Authentication certificate used. DER + Base64 encoded. Signing process doesn't return this value.</td>
+    <td colspan="1" class="confluenceTd">Authentication certificate used. DER + Base64 encoded. Signing process doesn't return this value (need to pull separately). 
+    From the certificate it is possible to obtain end user name, national identity number and country. See [mid-rest-java-client](https://github.com/SK-EID/mid-rest-java-client) or [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client) for examples how to parse the certificate.</td>
 </tr>
 
 </tbody>
@@ -1318,6 +1341,37 @@ and "result" with one of the following values:
 </table>
 
 </div>
+
+## <span class="numhead-number">3.4.</span> API version 
+
+| Method | URL          |
+| ------ | -------------|
+| GET    | BASE/version |
+
+### 3.4.1. Example response
+
+```
+    Version: 5.1.1. Built: 19.06.2019 21:06  
+```
+
+### 3.4.2. Response structure 
+
+```
+    Version: MAJOR.MINOR.PATCH. Built: dd.MM.yyyy hh:mm
+```
+
+Version numbering:
+
+* MAJOR version is incremented when a new API is released or if there have been major internal changes. See chapter [2.7.](#27-backwards-compatibility) for notes about API backwards compatibility.
+* MINOR version is incremented when there are smaller internal changes, new request parameters or new response fields are added.
+* PATCH version is incremented with backwards-compatible bug fixes. No fields are added with bug fixes.
+
+Built timestamp refers when the release was built from source code. 
+
+### 3.4.3. Public demo environment version number
+
+Open link: <https://tsp.demo.sk.ee/mid-api/version>
+
 
 # <span class="numhead-number">4.</span> Helper libraries and demo applications
 
