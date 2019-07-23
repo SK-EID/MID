@@ -27,7 +27,10 @@ Since launching the DDS service a lot has happened:
 | Can be used to verify a certificate's validity (including any smartcard) | yes | no | 
 | Can be used to create DigiDoc/BDOC containers (even when signing with smart-card) | yes | no | 
 | Can be used to verify digitally signed files (DigiDoc/BDOC) and validity of signatures | yes | no | 
-| OSCP during authentication | yes | no | 
+| OCSP during authentication | yes | no | 
+| Relying Party can get end user's authentication certificate| yes | only after successful authentication|
+| Relying Party can pull end user's signing certificate| yes | yes|
+| Relying Party can decide if it wants to use RSA or EC cert for signing | yes | no, MID decides which cert to return|
 
 
 ## How to create and validate containers with MID
