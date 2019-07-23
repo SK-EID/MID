@@ -306,7 +306,9 @@ Description
 ```json
 {  
     "result": "OK",  
-    "cert": "MIIHhjCCBW6gAwIBAgIQDNYLtVwrKURYStrYApYViTANBgkqhkiG9w0B..."  
+    "cert": "MIIHhjCCBW6gAwIBAgIQDNYLtVwrKURYStrYApYViTANBgkqhkiG9w0B...",
+    "time": "2019-07-23T11:32:01",
+    "traceId": "5ffc28098bb14341"
 }
 ```
 
@@ -373,6 +375,20 @@ Description
 <td colspan="1" class="confluenceTd">Certificate value, DER + Base64 encoded.</td>
 
 </tr>
+
+<tr>
+    <td>time</td>
+    <td>datetime</td>
+    <td>Since 5.2.1</td>
+    <td>Used by Application Provider for tracking application logs of any error report.</td>
+</tr>
+<tr>
+    <td>traceId</td>
+    <td>HEX number</td>
+    <td>Since 5.2.1</td>
+    <td>Used by Application Provider for tracking application logs of any error report.</td>
+</tr>
+
 
 </tbody>
 
@@ -737,6 +753,15 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 
 ### <span class="numhead-number">3.2.6\.</span> Error conditions
 
+Any response where HTTP status code is not 200 is considered an error condition.
+HTTP status code 4xx refers to errors made by the Relying Party and 
+HTTP status code 5xx refers to an error on the Application Provider's side.
+
+If authentication or signing is not successful because of End User not entering PIN or 
+due to communication failure this is not considered an error condition but rather a
+something that can be predicted and expected i.e. it is part of the normal flow.
+
+
 <div class="table-wrap">
 
 <table class="confluenceTable"><colgroup><col> <col> <col></colgroup> 
@@ -810,7 +835,26 @@ Note that when the process is signing the prompt to End User has "Sign?" in the 
 </table>
 </div>
 
+See next chapter for body of the error.
 
+### 3.2.7.</span> Error response contents
+
+Example error response contents:
+
+```json
+{
+    "error": "relyingPartyUUID must not be null",
+    "time": "2019-07-23T11:27:49",
+    "traceId": "4a295f2786d6dc89"
+}
+```
+
+Any error response (when HTTP status code is not 200)  contains an error message.
+This response is meant for the developer to fix the call.
+There is no need to parse any error responses (where HTTP status code is not 200) 
+ and these error messages should not be shown to the End User.
+Also error responses hold time and traceId parameters which are for Application Provider 
+to find the application logs for any reports about possible errors of MID-REST API.
 
 
 ## <span class="numhead-number">3.3\.</span> Status of signing and authentication
@@ -1072,6 +1116,19 @@ Description
     <td colspan="1" class="confluenceTd">Authentication certificate used. DER + Base64 encoded. Signing process doesn't return this value.</td>
 </tr>
 
+<tr>
+    <td>time</td>
+    <td>datetime</td>
+    <td>Since 5.2.1</td>
+    <td>Used by Application Provider for tracking application logs of any error report</td>
+</tr>
+<tr>
+    <td>traceId</td>
+    <td>HEX number</td>
+    <td>Since 5.2.1</td>
+    <td>Used by Application Provider for tracking application logs of any error report</td>
+</tr>
+
 </tbody>
 
 </table>
@@ -1102,7 +1159,9 @@ Response when server is still waiting for user's response to arrive back from ce
 
 ```json
 {
-    "state":"RUNNING"  
+    "state":"RUNNING",
+    "time": "2019-07-23T11:36:16",
+    "traceId": "460ef8a6be5730da"  
 }
 ```
 
@@ -1117,7 +1176,9 @@ Signing response after successful completion:
     "signature": {
         "value": "B+C9XVjIAZnCHH9vfBSv...",
         "algorithm": "SHA256WithECEncryption"
-    }  
+    },
+    "time": "2019-07-23T10:52:20",
+    "traceId": "d8de38e7bb5d8f8a"
 }
 ```
 
@@ -1132,7 +1193,9 @@ Authentication response after successful completion (note that unlike signature 
         "value": "B+C9XVjIAZnCHH9vfBSv...",
         "algorithm": "SHA256WithECEncryption"  
     },
-    "cert": "MIIFxjCCA66gAwIBAgIQZ6v2ut9..."
+    "cert": "MIIFxjCCA66gAwIBAgIQZ6v2ut9...",
+    "time": "2019-07-23T10:52:20",
+    "traceId": "d8de38e7bb5d8f8a"
 }
 ```
 
@@ -1141,7 +1204,9 @@ If user cancelled the operation:
 ```json
 {  
     "state": "COMPLETE",
-    "result": "USER_CANCELLED"
+    "result": "USER_CANCELLED",
+    "time": "2019-07-23T11:36:38",
+    "traceId": "2f3bebf7036c51f1"
 }
 ```
 
@@ -1151,7 +1216,9 @@ The Application Provider has given up waiting for it to arrive and responds with
 ```json
 {
     "state": "COMPLETE",
-    "result": "TIMEOUT"  
+    "result": "TIMEOUT",
+    "time": "2019-07-23T11:36:11",
+    "traceId": "bc861f0cf0568570"
 }
 ```
 
