@@ -949,7 +949,7 @@ by setting parameter timeoutMs.
 If the session is in RUNNING state (meaning waiting for user to enter the PIN to the cellphone and the response
 to arrive) the server waits this amount of time before responding.
 
-If this parameter is not provided, a default is used (can change, value around 1000ms).
+If this parameter is not provided, a default is used (can change, value 10000ms).
 For very large values the service silently reverts to configuration specific maximum value (can change, value around 60000-12000ms).
 For very low values the service silently reverts to configuration specific minimum value (can change, value around 1000ms)
 
