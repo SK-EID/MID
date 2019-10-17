@@ -30,7 +30,7 @@ Since launching the DDS service a lot has happened:
 | OCSP during authentication | yes | no | 
 | Relying Party can get end user's authentication certificate| yes | only after successful authentication|
 | Relying Party can pull end user's signing certificate| yes | yes|
-| Relying Party can decide if it wants to use RSA or EC cert for signing | yes | no, MID decides which cert to return|
+| Relying Party can decide if it wants to use RSA or ECC certificate for signing | yes | no, MID decides which certificate to return|
 
 
 ## How to create and validate containers with MID
