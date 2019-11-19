@@ -166,6 +166,21 @@ when a new field is added to a MID-REST API response.
 
 See [chapter 3.4.](#34-api-version) for fetching current API version.
 
+## <span class="numhead-number">2.8.</span> API endpoint authentication
+
+It is essential that RP performs all the required checks when connecting to the HTTPS API endpoint, to make sure that the connection endpoint is authentic and that the connection is secure. This is required to prevent MITM attacks for the authentication and signature protocols.
+
+The RP must do the following checks :
+
+1. Verify if the HTTPS connection and the TLS handshake is performed with the secure TLS ciphersuite.
+1. Verify that the X.509 certificate of the HTTPS endpoint belongs to the well-known public key of the Smart-ID API. The RP must implement HTTPS pinning (https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning)
+1. Verify that the X.509 certificate of the HTTPS endpoint is valid (not expired, signed by trusted CA and not revoked)
+These checks are incorporated into:
+
+* [mid-rest-java-client](https://github.com/andrevka/mid-rest-java-client/tree/DDS2738#verifying-the-ssl-connection-to-sk)
+* [mid-rest-php-client](https://github.com/andrevka/mid-rest-php-client/tree/DDS-2738#https-pinning)
+
+In case the RP fails to verify the connection security and the attacks is able to launch MITM attack [(you can find more info here)](https://github.com/SK-EID/smart-id-documentation#35-api-endpoint-authentication)
 # <span class="numhead-number">3.</span> REST API flows
 
 <span class="inline-comment-marker" data-ref="37ce9f19-f57b-4c9f-922a-36e89b61c972">BASE: mid-api</span>
