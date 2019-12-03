@@ -19,6 +19,7 @@
     *  [2.5\. HTTP status code usage](#25-http-status-code-usage)
     *  [2.6\. Session management](#26-session-management)
     *  [2.7. Backwards compatibility](#27-backwards-compatibility)
+    *  [2.8. API endpoint authentication](#28-api-endpoint-authentication)
 *   [3\. REST API flows](#3-rest-api-flows)
     *   [3.1\. Certificate request](#31-certificate-request)
         *   [3.1.1\. Pre-Conditions ](#311-Pre-Conditions)
@@ -54,7 +55,9 @@
     *   [4.1\. Java](#41-java)
     *   [4.2\. PHP](#42-php)
 *   [5\. Comparison with DigiDocService](#5-comparison-with-digidocservice)
-
+*   [6\. OCSP](#6-ocsp)
+    *   [6.1\. Java](#61-ocsp-necessity)
+    *   [6.2\. PHP](#42-implementing-ocsp)
 <div>  
 
 # <span class="numhead-number">1\.</span> Introduction
@@ -1482,6 +1485,33 @@ hints for migration from DDS to MID-
 
 * [MID-REST compared to DDS](https://github.com/SK-EID/MID/blob/master/DDS-to-MID-migration/README.md)
 
+# <span class="numhead-number">6.</span> OCSP
+
+The Online Certificate Status Protocol is an Internet protocol used for obtaining the revocation status of an X.509 digital certificate.
+There are different OCSP providers, and some are free and others paid. [SK OCSP Services](https://www.skidsolutions.eu/en/services/validity-confirmation-services/).
+
+## <span class="numhead-number">6.1\.</span> OSCP Necessity
+
+When digitally signing AsicE and Bdoc containers by standard then for the signature to be valid it is required
+to perform OCSP for signer's certificate at the time of signing and include OCSP response as part of the signature.
+
+## <span class="numhead-number">6.2\.</span> Implementing OCSP
+
+When using the Digidoc4j then OCSP check is implemented under the hood.
+For testing purposes, it is possible to use Test OCSP by building the signature Container with Test Configuration.
+
+```java
+Configuration configuration = new Configuration(Configuration.Mode.TEST);
+
+Container container = ContainerBuilder.aContainer()
+    .withConfiguration(configuration)
+    .withDataFile(uploadedFile)
+    .build();
+```
+
+When creating a signature MID-REST verifies that the signing certificate is valid but it doesn't perform OCSP for it.
+When signing digitally Bdoc or AsicE containers the client needs to perform OCSP. When using [Digidoc4j](https://github.com/open-eid/digidoc4j)
+it performs the OCSP check automatically and includes it in the signature.
 
 </div>
 </div>
