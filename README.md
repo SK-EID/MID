@@ -56,8 +56,8 @@
     *   [4.2\. PHP](#42-php)
 *   [5\. Comparison with DigiDocService](#5-comparison-with-digidocservice)
 *   [6\. OCSP](#6-ocsp)
-    *   [6.1\. Java](#61-ocsp-necessity)
-    *   [6.2\. PHP](#42-implementing-ocsp)
+    *   [6.1\. OSCP Necessity](#61-ocsp-necessity)
+    *   [6.2\. Implementing OCSP](#42-implementing-ocsp)
 <div>  
 
 # <span class="numhead-number">1\.</span> Introduction
@@ -180,8 +180,8 @@ The RP must do the following checks :
 1. Verify that the X.509 certificate of the HTTPS endpoint is valid (not expired, signed by trusted CA and not revoked)
 These checks are incorporated into:
 
-* [mid-rest-java-client](https://github.com/andrevka/mid-rest-java-client/tree/DDS2738#verifying-the-ssl-connection-to-sk)
-* [mid-rest-php-client](https://github.com/andrevka/mid-rest-php-client/tree/DDS-2738#https-pinning)
+* [mid-rest-java-client](https://github.com/SK-EID/mid-rest-java-client#verifying-the-ssl-connection-to-sk)
+* [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client#https-pinning)
 
 In case the RP fails to verify the connection security and the attacks is able to launch MITM attack [(you can find more info here)](https://github.com/SK-EID/smart-id-documentation#35-api-endpoint-authentication)
 # <span class="numhead-number">3.</span> REST API flows
@@ -1498,7 +1498,7 @@ to perform OCSP for signer's certificate at the time of signing and include OCSP
 ## <span class="numhead-number">6.2\.</span> Implementing OCSP
 
 When using the Digidoc4j then OCSP check is implemented under the hood.
-For testing purposes, it is possible to use Test OCSP by building the signature Container with Test Configuration.
+For testing purposes, it is possible to use Test OCSP by building the signature Container with Test Configuration. To use test ocsp you need to upload your signing certificate [here](https://demo.sk.ee/upload_cert/).
 
 ```java
 Configuration configuration = new Configuration(Configuration.Mode.TEST);
