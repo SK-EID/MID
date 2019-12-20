@@ -171,7 +171,7 @@ See [chapter 3.4.](#34-api-version) for fetching current API version.
 
 ## <span class="numhead-number">2.8.</span> API endpoint authentication
 
-It is essential that RP performs all the required checks when connecting to the HTTPS API endpoint, to make sure that the connection endpoint is authentic and that the connection is secure. This is required to prevent MITM attacks for the authentication and signature protocols.
+It is essential that RP performs all the required checks when connecting to the HTTPS API endpoint, to make sure that the connection endpoint is authentic and that the connection is secure. This is required to prevent [MITM](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) (Man-in-the-middle) attacks for the authentication and signature protocols.
 
 The RP must do the following checks :
 
@@ -1488,16 +1488,17 @@ hints for migration from DDS to MID-
 # <span class="numhead-number">6.</span> OCSP
 
 The Online Certificate Status Protocol is an Internet protocol used for obtaining the revocation status of an X.509 digital certificate.
-There are different OCSP providers, and some are free and others paid. [SK OCSP Services](https://www.skidsolutions.eu/en/services/validity-confirmation-services/).
+See [Validity Confirmation Services offered by SK](https://www.skidsolutions.eu/en/services/validity-confirmation-services/) for more information
 
 ## <span class="numhead-number">6.1\.</span> OSCP Necessity
 
 When digitally signing AsicE and Bdoc containers by standard then for the signature to be valid it is required
 to perform OCSP for signer's certificate at the time of signing and include OCSP response as part of the signature.
+MID-REST doesn't perform OCSP.
 
 ## <span class="numhead-number">6.2\.</span> Implementing OCSP
 
-When using the Digidoc4j then OCSP check is implemented under the hood.
+Digidoc4j performs the OCSP during signing process and includes OCSP response it in the signature.
 For testing purposes, it is possible to use Test OCSP by building the signature Container with Test Configuration. To use test ocsp you need to upload your signing certificate [here](https://demo.sk.ee/upload_cert/).
 
 ```java
@@ -1508,10 +1509,6 @@ Container container = ContainerBuilder.aContainer()
     .withDataFile(uploadedFile)
     .build();
 ```
-
-When creating a signature MID-REST verifies that the signing certificate is valid but it doesn't perform OCSP for it.
-When signing digitally Bdoc or AsicE containers the client needs to perform OCSP. When using [Digidoc4j](https://github.com/open-eid/digidoc4j)
-it performs the OCSP check automatically and includes it in the signature.
 
 </div>
 </div>
