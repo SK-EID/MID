@@ -76,7 +76,7 @@ Mobile-ID (MID) REST interface offers the entry point to main use cases for Mobi
 *   **Mobile Signing** - A process where (besides other operations) the hash value of document to be signed is encrypted using secret signing key (stored on SIM-card, protected by 5-digit PIN) 
 *   **Mobile Authentication** - A process where generated hash is encrypted using secret authentication key (stored on SIM-card, protected by 4-digit PIN)
 *   **Verification Code** - A 4-digit number displayed both in e-service and in cellphone screen during authentication and signing. See paragraph 2.4 for more info.
-
+*   **OCSP** - [The Online Certificate Status Protocol](https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol)
 # <span class="numhead-number">2\.</span> General description
 
 Mobile-ID API is exposed over REST interface as described below.
@@ -178,8 +178,8 @@ The RP must do the following checks :
 1. Verify if the HTTPS connection and the TLS handshake is performed with the secure TLS ciphersuite.
 1. Verify that the X.509 certificate of the HTTPS endpoint belongs to the well-known public key of the Smart-ID API. The RP must implement HTTPS pinning (https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning)
 1. Verify that the X.509 certificate of the HTTPS endpoint is valid (not expired, signed by trusted CA and not revoked)
-These checks are incorporated into:
 
+These checks are incorporated into:
 * [mid-rest-java-client](https://github.com/SK-EID/mid-rest-java-client#verifying-the-ssl-connection-to-sk)
 * [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client#https-pinning)
 
@@ -1488,17 +1488,17 @@ hints for migration from DDS to MID-
 # <span class="numhead-number">6.</span> OCSP
 
 The Online Certificate Status Protocol is an Internet protocol used for obtaining the revocation status of an X.509 digital certificate.
-See [Validity Confirmation Services offered by SK](https://www.skidsolutions.eu/en/services/validity-confirmation-services/) for more information
+See [Validity Confirmation Services offered by SK](https://www.skidsolutions.eu/en/services/validity-confirmation-services/) for more information.
 
 ## <span class="numhead-number">6.1\.</span> OSCP Necessity
 
 When digitally signing AsicE and Bdoc containers by standard then for the signature to be valid it is required
 to perform OCSP for signer's certificate at the time of signing and include OCSP response as part of the signature.
-MID-REST doesn't perform OCSP.
+MID-REST doesn't perform any OCSP requests.
 
 ## <span class="numhead-number">6.2\.</span> Implementing OCSP
 
-Digidoc4j performs the OCSP during signing process and includes OCSP response it in the signature.
+[Digidoc4j](https://github.com/open-eid/digidoc4j) performs the OCSP during signing process and includes OCSP response it in the signature.
 For testing purposes, it is possible to use Test OCSP by building the signature Container with Test Configuration. To use test ocsp you need to upload your signing certificate [here](https://demo.sk.ee/upload_cert/).
 
 ```java
