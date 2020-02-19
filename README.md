@@ -57,7 +57,7 @@
 *   [5\. Comparison with DigiDocService](#5-comparison-with-digidocservice)
 *   [6\. OCSP](#6-ocsp)
     *   [6.1\. OSCP Necessity](#61-ocsp-necessity)
-    *   [6.2\. Implementing OCSP](#42-implementing-ocsp)
+    *   [6.2\. Implementing OCSP](#62-implementing-ocsp)
 <div>  
 
 # <span class="numhead-number">1\.</span> Introduction
@@ -1490,7 +1490,7 @@ hints for migration from DDS to MID-
 The Online Certificate Status Protocol is an Internet protocol used for obtaining the revocation status of an X.509 digital certificate.
 See [Validity Confirmation Services offered by SK](https://www.skidsolutions.eu/en/services/validity-confirmation-services/) for more information.
 
-## <span class="numhead-number">6.1\.</span> OSCP Necessity
+## <span class="numhead-number">6.1\.</span> OCSP Necessity
 
 When digitally signing AsicE and Bdoc containers by standard then for the signature to be valid it is required
 to perform OCSP for signer's certificate at the time of signing and include OCSP response as part of the signature.
