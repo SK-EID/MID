@@ -106,7 +106,7 @@ The length has to be either 32 characters (if hashType is SHA-256), 48 character
 
 ### <span class="numhead-number">2.3.1\.</span> Supported hashing algorithms
 
-MID REST supports signature operations based on SHA-2 family of hash algorithms, namely SHA-256, SHA-384 and SHA-512\.
+MID REST supports signature operations based on SHA-2 family of hash algorithms, namely SHA-256, SHA-384 and SHA-512.
 Their corresponding identifiers in API are "SHA256", "SHA384" and "SHA512".
 
 ## <span class="numhead-number">2.4\.</span> Verification code
@@ -148,6 +148,8 @@ As this can take time - these processes are split in two parts:
 
 * First request initiates the process and immediately returns session id to the Relying Party.
 * Relying Party has to then periodically make status check requests until the process has finished.
+
+![Main flows of MID REST API](images/RP_Mid-Gateway.png?raw=true "Main flows of MID REST API")
 
 ## <span class="numhead-number">2.7.</span> Backwards compatibility
 
@@ -1128,7 +1130,18 @@ Description
 
 <td colspan="1" class="confluenceTd">Only if state is COMPLETE</td>
 
-<td colspan="1" class="confluenceTd">Signature algorithm, in the form of sha256WithRSAEncryption</td>
+<td colspan="1" class="confluenceTd">Signature algorithm used, one of 
+    SHA256WithECEncryption,
+    SHA256WithRSAEncryption,
+    SHA384WithECEncryption,
+    SHA384WithRSAEncryption,
+    SHA512WithECEncryption or
+    SHA512WithRSAEncryption.
+    
+Start of this value reflects the hashType parameter supplied by user (SHA256, SHA384 or SHA512).
+If EC (Elliptic Curve) or RSA is used - this depends on which certificates the End User has available on the SIM-Card.
+If SIM-card has both types of certificates available then Application Provider selects the type of certificate by its internal preferences (these preferences can change over time).
+</td>
 
 </tr>
 <tr>
