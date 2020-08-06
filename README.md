@@ -19,6 +19,7 @@
     *  [2.5\. HTTP status code usage](#25-http-status-code-usage)
     *  [2.6\. Session management](#26-session-management)
     *  [2.7. Backwards compatibility](#27-backwards-compatibility)
+    *  [2.8. API endpoint authentication](#28-api-endpoint-authentication)
 *   [3\. REST API flows](#3-rest-api-flows)
     *   [3.1\. Certificate request](#31-certificate-request)
         *   [3.1.1\. Pre-Conditions ](#311-Pre-Conditions)
@@ -54,7 +55,9 @@
     *   [4.1\. Java](#41-java)
     *   [4.2\. PHP](#42-php)
 *   [5\. Comparison with DigiDocService](#5-comparison-with-digidocservice)
-
+*   [6\. OCSP](#6-ocsp)
+    *   [6.1\. OSCP Necessity](#61-ocsp-necessity)
+    *   [6.2\. Implementing OCSP](#62-implementing-ocsp)
 <div>  
 
 # <span class="numhead-number">1\.</span> Introduction
@@ -73,7 +76,7 @@ Mobile-ID (MID) REST interface offers the entry point to main use cases for Mobi
 *   **Mobile Signing** - A process where (besides other operations) the hash value of document to be signed is encrypted using secret signing key (stored on SIM-card, protected by 5-digit PIN) 
 *   **Mobile Authentication** - A process where generated hash is encrypted using secret authentication key (stored on SIM-card, protected by 4-digit PIN)
 *   **Verification Code** - A 4-digit number displayed both in e-service and in cellphone screen during authentication and signing. See paragraph 2.4 for more info.
-
+*   **OCSP** - [The Online Certificate Status Protocol](https://en.wikipedia.org/wiki/Online_Certificate_Status_Protocol)
 # <span class="numhead-number">2\.</span> General description
 
 Mobile-ID API is exposed over REST interface as described below.
@@ -168,6 +171,21 @@ when a new field is added to a MID-REST API response.
 
 See [chapter 3.4.](#34-api-version) for fetching current API version.
 
+## <span class="numhead-number">2.8.</span> API endpoint authentication
+
+It is essential that RP performs all the required checks when connecting to the HTTPS API endpoint, to make sure that the connection endpoint is authentic and that the connection is secure. This is required to prevent [MITM](https://en.wikipedia.org/wiki/Man-in-the-middle_attack) (Man-in-the-middle) attacks for the authentication and signature protocols.
+
+The RP must do the following checks :
+
+1. Verify if the HTTPS connection and the TLS handshake is performed with the secure TLS ciphersuite.
+1. Verify that the X.509 certificate of the HTTPS endpoint belongs to the well-known public key of the Smart-ID API. The RP must implement HTTPS pinning (https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning)
+1. Verify that the X.509 certificate of the HTTPS endpoint is valid (not expired, signed by trusted CA and not revoked)
+
+These checks are incorporated into:
+* [mid-rest-java-client](https://github.com/SK-EID/mid-rest-java-client#verifying-the-ssl-connection-to-sk)
+* [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client#https-pinning)
+
+In case the RP fails to verify the connection security and the attacks is able to launch MITM attack [(you can find more info here)](https://github.com/SK-EID/smart-id-documentation#35-api-endpoint-authentication)
 # <span class="numhead-number">3.</span> REST API flows
 
 <span class="inline-comment-marker" data-ref="37ce9f19-f57b-4c9f-922a-36e89b61c972">BASE: mid-api</span>
@@ -1480,6 +1498,30 @@ hints for migration from DDS to MID-
 
 * [MID-REST compared to DDS](https://github.com/SK-EID/MID/blob/master/DDS-to-MID-migration/README.md)
 
+# <span class="numhead-number">6.</span> OCSP
+
+The Online Certificate Status Protocol is an Internet protocol used for obtaining the revocation status of an X.509 digital certificate.
+See [Validity Confirmation Services offered by SK](https://www.skidsolutions.eu/en/services/validity-confirmation-services/) for more information.
+
+## <span class="numhead-number">6.1\.</span> OCSP Necessity
+
+When digitally signing AsicE and Bdoc containers by standard then for the signature to be valid it is required
+to perform OCSP for signer's certificate at the time of signing and include OCSP response as part of the signature.
+MID-REST doesn't perform any OCSP requests.
+
+## <span class="numhead-number">6.2\.</span> Implementing OCSP
+
+[Digidoc4j](https://github.com/open-eid/digidoc4j) performs the OCSP during signing process and includes OCSP response it in the signature.
+For testing purposes, it is possible to use Test OCSP by building the signature Container with Test Configuration. To use test ocsp you need to upload your signing certificate [here](https://demo.sk.ee/upload_cert/).
+
+```java
+Configuration configuration = new Configuration(Configuration.Mode.TEST);
+
+Container container = ContainerBuilder.aContainer()
+    .withConfiguration(configuration)
+    .withDataFile(uploadedFile)
+    .build();
+```
 
 </div>
 </div>
