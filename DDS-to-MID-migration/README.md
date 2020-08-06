@@ -17,6 +17,7 @@ Since launching the DDS service a lot has happened:
 | Demo applications available                         | no | yes ([java](https://github.com/SK-EID/mid-rest-java-demo) and [php](https://github.com/SK-EID/mid-rest-php-demo)) | 
 | Who generates the authentication hash               | partly DDS (10 bytes), partly Relying Party (another 10 bytes) | Relying Party |
 | Who needs to calculate 4-digit verification code from the hash | done by DDS | Relying Party (libraries provide this as a method) | 
+| Relying Party can display Verification Code immediately after getting End User's details (phone number and national identity number) | no, it has to make a request to DDS first | yes | 
 | Long-polling support (client makes a request and sending back the response is delayed until the customer has input PIN code (or a timeout is reached) | yes | yes | 
 | Can be used to check if the end user has a Mobile-ID | yes | yes | 
 | Provides authentication with Mobile-ID | yes | yes | 
@@ -39,4 +40,27 @@ Use [DigiDoc4J](https://github.com/open-eid/digidoc4j) or [libdigidocpp](https:/
 
 # Main differences between Smart-ID and MID
 
+## Multiple accounts
+
+Single End User can have more than one device with Smart-ID installed on it (multiple accounts, each account has its
+own authentication and signing certificate) and (during first interaction) it is not possible for Relying Party to
+target the notification to specific device. If End User has multiple accounts then at first interaction
+ (usually the first interaction in any session is authentication) all these devices
+get a notification and user can choose which device it wants to use for the current session.
+
+With MID the combination of phone number and national identification code always results with single pair of authentication
+and signing certificates. In Estonia any End User can have only one MID account.
+In Lithuania it is possible for End User to have multiple MID accounts (each account with a different cell phone number).
+
+This is the reason why in Smart-ID pulling signing certificate is designed to be a two step process but with MID
+it is possible to pull the certificate with a single request.
+If Relying Party only has End User's (with multiple Smart-ID accounts) natinal identity number and it wants to pull signing certificate
+then all the devices get a notification and End User has to click on the device it wants to use for signing.
+However this is used rarely as End User usually has to authenticate first and during authentication the user 
+selects the device and further operations within this session (i.e. signing) the same device is used by Relying Party.
+
+
+## Verification code
+
 MID verification codes are always in range 0000...8192, but Smart-ID verification codes spread out more widely - 0000...9999.
+
