@@ -105,7 +105,7 @@ Relying Party creates the hash using one of the supported hashing algorithms.
 For signing the document to be signed is the input for the chosen hash algorithm.
 
 For authentication the hash can be random HEX string with correct length.
-The length has to be either 32 characters (if hashType is SHA-256), 48 characters (SHA-384) or 64 characters (SHA-512).
+The length has to be either 64 characters (if hashType is SHA-256), 96 characters (SHA-384) or 128 characters (SHA-512).
 
 ### <span class="numhead-number">2.3.1\.</span> Supported hashing algorithms
 
