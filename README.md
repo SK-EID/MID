@@ -472,15 +472,6 @@ For all the result values HTTP status code 200 is used.
 
 </tr>
 
-<tr>
-
-<td colspan="1" class="confluenceTd">NOT_ACTIVE</td>
-
-<td colspan="1" class="confluenceTd"><span>Certificate was found but is not active</span></td>
-
-</tr>
-
-
 </tbody>
 
 </table>
