@@ -105,7 +105,11 @@ Relying Party creates the hash using one of the supported hashing algorithms.
 For signing the document to be signed is the input for the chosen hash algorithm.
 
 For authentication the hash can be random HEX string with correct length.
-The length has to be either 32 characters (if hashType is SHA-256), 48 characters (SHA-384) or 64 characters (SHA-512).
+The length has to be one of:
+
+ * 32 bytes = 64 HEX characters (if hashType is SHA-256)
+ * 48 bytes = 96 HEX characters (if hashType is SHA-384)
+ * 64 bytes = 128 HEX characters (if hashType is SHA-512)
 
 ### <span class="numhead-number">2.3.1\.</span> Supported hashing algorithms
 
@@ -219,12 +223,13 @@ In case the RP fails to verify the connection security and the attacks is able t
 </table>
 </div>
 
-This method retrieves the signing certificate.
+This method retrieves the signing certificate. Use cases for fetching of the signing certificate:
 
-This method is necessary for *AdES-styled digital signatures which require knowledge of the certificate before creating the signature.
-For other types of digital signatures knowledge of the certificate is not needed.
-
-This endpoint can be used to test if end user is a Mobile ID customer.
+* to verify the signature obtained by the signature endpoint (as the signing certificate is not included in the signing response)
+* for embedding the certificate into *AdES-styled digital signatures which require knowledge of the certificate before creating the signature.
+(See [Java code example](https://github.com/SK-EID/mid-rest-java-demo/blob/0562f3ba6927b0dfbc3e97e6d58b81b1e1f4d3b6/src/main/java/ee/sk/middemo/services/MobileIdSignatureServiceImpl.java#L104)
+that first pulls the certificate and then starts the signing process.)
+* to test if end user is a Mobile ID customer.
 
 If end user has two pairs of certificates (RSA and Elliptic Curve Cryptography (ECC)) then system returns preferred certificate (ECC).
 
@@ -1157,8 +1162,12 @@ If SIM-card has both types of certificates available then Application Provider s
     <td colspan="1" class="confluenceTd">cert</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">Only if process was authentication and signature is present.</td>
-    <td colspan="1" class="confluenceTd">Authentication certificate used. DER + Base64 encoded. Signing process doesn't return this value (need to pull separately). 
-    From the certificate it is possible to obtain end user name, national identity number and country. See [mid-rest-java-client](https://github.com/SK-EID/mid-rest-java-client) or [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client) for examples how to parse the certificate.</td>
+    <td colspan="1" class="confluenceTd">Authentication certificate used. DER + Base64 encoded.
+From the certificate it is possible to obtain end user name, national identity number and country. See [mid-rest-java-client](https://github.com/SK-EID/mid-rest-java-client) or [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client) for examples how to parse the certificate.
+    
+Signing process doesn't return a certificate.
+To obtain the certificate used to create the signature make a separate request (see [3.1.](#31-certificate-request)). 
+NB! The authentication certificate can't be used to verify the signature returned by the signing process.</td>
 </tr>
 
 <tr>
