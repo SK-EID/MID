@@ -182,7 +182,7 @@ It is essential that RP performs all the required checks when connecting to the 
 The RP must do the following checks :
 
 1. Verify if the HTTPS connection and the TLS handshake is performed with the secure TLS ciphersuite.
-1. Verify that the X.509 certificate of the HTTPS endpoint belongs to the well-known public key of the Smart-ID API. The RP must implement HTTPS pinning (https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning)
+1. The RP must implement HTTPS pinning (https://www.owasp.org/index.php/Certificate_and_Public_Key_Pinning) and verify that the X.509 certificate of the HTTPS endpoint belongs to MID API and is trusted. The HTTPS certificate of MID API can be downloaded here: https://www.skidsolutions.eu/en/Repository/certs/other-important-certificates - section "mid.sk.ee"
 1. Verify that the X.509 certificate of the HTTPS endpoint is valid (not expired, signed by trusted CA and not revoked)
 
 These checks are incorporated into:
