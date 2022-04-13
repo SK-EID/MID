@@ -54,10 +54,9 @@
 *   [4\. Helper libraries and demo applications](#4-helper-libraries-and-demo-applications)
     *   [4.1\. Java](#41-java)
     *   [4.2\. PHP](#42-php)
-*   [5\. Comparison with DigiDocService](#5-comparison-with-digidocservice)
-*   [6\. OCSP](#6-ocsp)
-    *   [6.1\. OSCP Necessity](#61-ocsp-necessity)
-    *   [6.2\. Implementing OCSP](#62-implementing-ocsp)
+*   [5\. OCSP](#6-ocsp)
+    *   [5.1\. OSCP Necessity](#61-ocsp-necessity)
+    *   [5.2\. Implementing OCSP](#62-implementing-ocsp)
 <div>  
 
 # <span class="numhead-number">1\.</span> Introduction
