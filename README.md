@@ -290,7 +290,7 @@ Description
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd"><span>Name of the relying party – previously agreed with Application Provider and DigiDocService operator.</span></td>
+<td colspan="1" class="confluenceTd"><span>Name of the relying party – previously agreed with Application Provider.</span></td>
 
 </tr>
 
@@ -1490,26 +1490,18 @@ Provided PHP functionality only supports authentication and fetching the signing
 * [PHP Client](https://github.com/SK-EID/mid-rest-php-client)
 * [PHP Demo Application](https://github.com/SK-EID/mid-rest-php-demo)
 
-# <span class="numhead-number">5.</span> Comparison with DigiDocService
-
-Previous generation MID-REST integration has been provided with SOAP-based DigiDocService (DDS).
-Following page lists the main differences between DDS and new MID-REST (MID) and provides
-hints for migration from DDS to MID-
-
-* [MID-REST compared to DDS](https://github.com/SK-EID/MID/blob/master/DDS-to-MID-migration/README.md)
-
-# <span class="numhead-number">6.</span> OCSP
+# <span class="numhead-number">5.</span> OCSP
 
 The Online Certificate Status Protocol is an Internet protocol used for obtaining the revocation status of an X.509 digital certificate.
 See [Validity Confirmation Services offered by SK](https://www.skidsolutions.eu/en/services/validity-confirmation-services/) for more information.
 
-## <span class="numhead-number">6.1\.</span> OCSP Necessity
+## <span class="numhead-number">5.1\.</span> OCSP Necessity
 
 When digitally signing AsicE and Bdoc containers by standard then for the signature to be valid it is required
 to perform OCSP for signer's certificate at the time of signing and include OCSP response as part of the signature.
 MID-REST doesn't perform any OCSP requests.
 
-## <span class="numhead-number">6.2\.</span> Implementing OCSP
+## <span class="numhead-number">5.2\.</span> Implementing OCSP
 
 [Digidoc4j](https://github.com/open-eid/digidoc4j) performs the OCSP during signing process and includes OCSP response it in the signature.
 For testing purposes, it is possible to use Test OCSP by building the signature Container with Test Configuration. To use test ocsp you need to upload your signing certificate [here](https://demo.sk.ee/upload_cert/).
