@@ -98,6 +98,8 @@ This value contains hexadecimal digits in canonical 8-4-4-4-12 format, for examp
 
 E-Service provider can have more than one relyingPartyUUID for different e-services.
 
+**NB!** The value relyingPartyUuid is case-sensitive, so only small caps are allowed.
+
 ## <span class="numhead-number">2.3\.</span> Creating the hash
 
 Relying Party creates the hash using one of the supported hashing algorithms.
@@ -301,7 +303,7 @@ Description
 
 <td colspan="1" class="confluenceTd">+</td>
 
-<td colspan="1" class="confluenceTd">UUID of the relying party</td>
+<td colspan="1" class="confluenceTd">UUID of the relying party - is case-sensitive.</td>
 
 </tr>
 
@@ -665,7 +667,7 @@ Description
     <td colspan="1" class="confluenceTd">relyingPartyUUID</td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">+</td>
-    <td colspan="1" class="confluenceTd"><span>UUID of the Relying Party - previously agreed with Application Provider.</span></td>
+    <td colspan="1" class="confluenceTd"><span>UUID of the Relying Party - previously agreed with Application Provider and is case-sensitive.</span></td>
 </tr>
 
 <tr>
@@ -709,7 +711,7 @@ Description
     <td colspan="1" class="confluenceTd"><span>displayText</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd"></td>
-    <td colspan="1" class="confluenceTd"><span>Text displayed in addition to relyingPartyName and Verification Code before asking authentication PIN. Maximum length is 40 bytes that is either 20 or 40 characters depending on the encoding - see displayTextFormat. 
+    <td colspan="1" class="confluenceTd"><span>Text displayed in addition to relyingPartyName and Verification Code before asking authentication PIN. Maximum length is 100 bytes that is either 50 or 100 characters depending on the encoding - see displayTextFormat. 
     If you set displayTextFormat="GSM-7" then all characters not beloning to this alphabet are replaced with spaces.
     </span></td>
 </tr>
@@ -718,7 +720,7 @@ Description
     <td colspan="1" class="confluenceTd"><span>displayTextFormat</span></td>
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd"></td>
-    <td colspan="1" class="confluenceTd"> Specifies which characters and how many can be used in "displayText". Possible values are "GSM-7" and "UCS-2”, if nothing is specified then defaults to "GSM-7". GSM-7 allows displayText to contain up to 40 characters from standard GSM 7-bit alpabet including up to 5 characters from extension table ( €[]^|{}\ ). UCS-2 allows up to 20 characters from UCS-2 alpabet (this has all Cyrillic characters, ÕŠŽ šžõ and ĄČĘĖĮŠŲŪŽ ąčęėįšųūž). [More info about encoding](https://en.wikipedia.org/wiki/GSM_03.38).</span></td>
+    <td colspan="1" class="confluenceTd"> Specifies which characters and how many can be used in "displayText". Possible values are "GSM-7" and "UCS-2”, if nothing is specified then defaults to "GSM-7". GSM-7 allows displayText to contain up to 100 characters from standard GSM 7-bit alpabet including up to 5 characters from extension table ( €[]^|{}\ ). UCS-2 allows up to 50 characters from UCS-2 alpabet (this has all Cyrillic characters, ÕŠŽ šžõ and ĄČĘĖĮŠŲŪŽ ąčęėįšųūž). [More info about encoding](https://en.wikipedia.org/wiki/GSM_03.38).</span></td>
 </tr>
 
 </tbody>
