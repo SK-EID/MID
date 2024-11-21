@@ -1164,7 +1164,7 @@ If SIM-card has both types of certificates available then Application Provider s
     <td colspan="1" class="confluenceTd">string</td>
     <td colspan="1" class="confluenceTd">Only if process was authentication and signature is present.</td>
     <td colspan="1" class="confluenceTd">Authentication certificate used. DER + Base64 encoded.
-From the certificate it is possible to obtain end user name, national identity number and country. See [mid-rest-java-client](https://github.com/SK-EID/mid-rest-java-client) or [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client) for examples how to parse the certificate.
+From the certificate it is possible to obtain end user name, national identity number and country. See [(mid-rest-java-client)](https://github.com/SK-EID/mid-rest-java-client) or [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client) for examples how to parse the certificate.
     
 Signing process doesn't return a certificate.
 To obtain the certificate used to create the signature make a separate request (see [3.1.](#31-certificate-request)). 
