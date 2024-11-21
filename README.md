@@ -1167,7 +1167,6 @@ If SIM-card has both types of certificates available then Application Provider s
 From the certificate it is possible to obtain end user name, national identity number and country. See [mid-rest-java-client](https://github.com/SK-EID/mid-rest-java-client) or [mid-rest-php-client](https://github.com/SK-EID/mid-rest-php-client) for examples how to parse the certificate.
        
 See also certificate owner´s personal data structure overview that can be parsed from the certificate´s Subject field: https://github.com/SK-EID/MID/wiki/Test-number-for-automated-testing-in-DEMO#personal-data-structure-overview-that-is-located-on-the-certificates-subject-field
-    
 Signing process doesn't return a certificate.
 To obtain the certificate used to create the signature make a separate request (see [3.1.](#31-certificate-request)). 
 NB! The authentication certificate can't be used to verify the signature returned by the signing process.</td>
